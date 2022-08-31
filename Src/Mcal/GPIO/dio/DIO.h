@@ -1,13 +1,16 @@
-
-
 /**********************************************************************************************************************
  *  FILE DESCRIPTION
  *  -------------------------------------------------------------------------------------------------------------------
- *         File:  dio.h
- *       Module:  -
+ *         File:  DIO.h
+ *       Module:  DIO
  *
- *  Description:  <Write File DESCRIPTION here>
+ *  Description:   -- APIs for :
+ *                        - read & write & toggle pin
+ *                        - read & write port
  *
+*********************************************************************************************************************
+ *** NAME: Mohamed Hassaneen Ahmed
+ *** DATE: 20/8/2022
  *********************************************************************************************************************/
 #ifndef GPIO_DIO_DIO_H_
 #define GPIO_DIO_DIO_H_
@@ -37,7 +40,7 @@
 *                                          Low =0
 *                                          NOT_OK =-1
 *******************************************************************************/
-GPIO_LevelChannelType DIO_ReadChannel (GPIO_ChannelType Channel_ID,GPIO_PortType Port_ID);
+GPIO_LevelChannelType DIO_ReadChannel (GPIO_PortType Port_ID,GPIO_ChannelType Channel_ID);
 
 
 /******************************************************************************
@@ -58,12 +61,12 @@ GPIO_LevelChannelType DIO_ReadChannel (GPIO_ChannelType Channel_ID,GPIO_PortType
 *                                        NOT_OK
 *
 *******************************************************************************/
-Std_ReturnType DIO_WriteChannel (GPIO_ChannelType Channel_ID,
-								 GPIO_PortType Port_ID,
+Std_ReturnType DIO_WriteChannel (GPIO_PortType Port_ID,
+								 GPIO_ChannelType Channel_ID,
 								 GPIO_LevelChannelType Level_Value);
 
 /******************************************************************************
-* \Syntax          : Std_ReturnType DIO_FlipChannel (DIO_ChannelType Channel_ID,
+* \Syntax          : void      DIO_FlipChannel      (DIO_ChannelType Channel_ID,
 *                                                    DIO_PortType Port_ID);
 
 * \Description     : Toggle pin
@@ -73,11 +76,10 @@ Std_ReturnType DIO_WriteChannel (GPIO_ChannelType Channel_ID,
 * \Parameters (in) : Channel_ID >>  pin number
 *                    Port_ID    >>  port number
 * \Parameters (out): None
-* \Return value:   : Std_ReturnType      OK
-*                                        NOT_OK
+* \Return value:   : None
 *
 *******************************************************************************/
-Std_ReturnType DIO_FlipChannel (GPIO_ChannelType Channel_ID,GPIO_PortType Port_ID);
+void DIO_FlipChannel (GPIO_PortType Port_ID,GPIO_ChannelType Channel_ID);
 
 /******************************************************************************
 * \Syntax          : DIO_LevelPortType DIO_ReadPort (DIO_PortType Port_ID);

@@ -2,13 +2,16 @@
  *  FILE DESCRIPTION
  *  -----------------------------------------------------------------------------------------------------------------*/
 /**        \file  port.c
- *        \brief
+ *        \brief  static code for initiation GPIO
+ *                static APIs
+ *                --
  *
  *      \details
  *
- *
- *********************************************************************************************************************/
-
+ ***********************************************************************************************************************
+ *** NAME: Mohamed Hassaneen Ahmed
+ *** DATE: 22/8/2022
+ **********************************************************************************************************************/
 /**********************************************************************************************************************
  *  INCLUDES
  *********************************************************************************************************************/
@@ -17,9 +20,9 @@
 
 
 /******************************************************************************
-* \Syntax          : Std_ReturnType PIN_SetDirection      (GPIO_ChannelType Channel_ID,
-									                       GPIO_PortTypeType Port_ID,
-									                       GPIO_PinDirectionType Direction);
+* \Syntax          : static Std_ReturnType PIN_SetDirection            (GPIO_PortType Port_ID,
+												                        GPIO_ChannelType Channel_ID,
+									                                     GPIO_PinDirectionType Direction)
 
 
 * \Description     :Select direction of pin
@@ -33,13 +36,13 @@
 * \Return value:   : Std_ReturnType        OK
 *                                          NOT_OK =-1
 *******************************************************************************/
-Std_ReturnType PIN_SetDirection            (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-									        GPIO_PinDirectionType Direction)
+static Std_ReturnType PIN_SetDirection            (GPIO_PortType Port_ID,
+												   GPIO_ChannelType Channel_ID,
+									               GPIO_PinDirectionType Direction)
 {
-	if ( (Port_ID    < PORTA) | (Port_ID    > PORTF) |
-	     (Channel_ID < PN0)   | (Channel_ID > PN7)   |
-		 (Direction  < INPUT) | (Direction  > OUTPUT)
+	if  (  (Port_ID      > PORTF)   |
+	       (Channel_ID   > PN7)     |
+	       (Direction    > OUTPUT)
 		)
 	{
 		return NOT_OK ;
@@ -125,14 +128,14 @@ Std_ReturnType PIN_SetDirection            (GPIO_ChannelType Channel_ID,
 			break;
 		}
 	}
+return 0;
 }
 
 /*******************************************************************************/
 /******************************************************************************
-* \Syntax          : Std_ReturnType PIN_SetDigitalEnable        (GPIO_ChannelType Channel_ID,
-									                             GPIO_PortType Port_ID,
-											                     GPIO_PinDigitalEnableType DigEn)
-
+* \Syntax          : static Std_ReturnType PIN_SetDigitalEnable        (GPIO_PortType Port_ID,
+												                        GPIO_ChannelType Channel_ID,
+											                            GPIO_PinDigitalEnableType DigEn)
 * \Description     :set digital enable of pin
 *
 * \Sync\Async      : Synchronous
@@ -141,17 +144,17 @@ Std_ReturnType PIN_SetDirection            (GPIO_ChannelType Channel_ID,
 *                    Port_ID    >>  port number
 *                    DigEn      >>  set digital enable
 * \Parameters (out): None
-* \Return value:   : Std_ReturnType        OK
-*                                          NOT_OK =-1
+* \Return value:   : static Std_ReturnType        OK
+*                                                 NOT_OK =-1
 *******************************************************************************/
-Std_ReturnType PIN_SetDigitalEnable        (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_PinDigitalEnableType DigEn)
+static Std_ReturnType PIN_SetDigitalEnable        (GPIO_PortType Port_ID,
+												   GPIO_ChannelType Channel_ID,
+											       GPIO_PinDigitalEnableType DigEn)
 {
-	if ( (Port_ID    < PORTA)                | (Port_ID    > PORTF)           |
-	     (Channel_ID < PN0)                  | (Channel_ID > PN7)             |
-		 (DigEn      < RESET_DIGITAL_ENABLE) | (DigEn      > SET_DIGITAL_ENABLE)
-		)
+	if (  (Port_ID    > PORTF)             |
+	     (Channel_ID > PN7)                |
+		 (DigEn      > SET_DIGITAL_ENABLE)
+	   )
 	{
 		return NOT_OK ;
 	}
@@ -236,15 +239,15 @@ Std_ReturnType PIN_SetDigitalEnable        (GPIO_ChannelType Channel_ID,
 			break;
 		}
 	}
+	return 0;
 }
 
 /*******************************************************************************/
 
 /******************************************************************************
-* \Syntax          : Std_ReturnType PIN_SetPullUp               (GPIO_ChannelType Channel_ID,
-									                             GPIO_PortType Port_ID,
-											                     GPIO_PinPullUpType PullUp_state)
-
+* \Syntax          : static Std_ReturnType PIN_SetPullUp               ( GPIO_PortType Port_ID,
+													                     GPIO_ChannelType Channel_ID,
+											                             GPIO_PinPullUpType PullUp_state)
 * \Description     :set  pull up attach of pin
 *
 * \Sync\Async      : Synchronous
@@ -256,14 +259,15 @@ Std_ReturnType PIN_SetDigitalEnable        (GPIO_ChannelType Channel_ID,
 * \Return value:   : Std_ReturnType        OK
 *                                          NOT_OK =-1
 *******************************************************************************/
-Std_ReturnType PIN_SetPullUp               (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_PinPullUpType PullUp_state)
+static Std_ReturnType PIN_SetPullUp               ( GPIO_PortType Port_ID,
+													GPIO_ChannelType Channel_ID,
+											        GPIO_PinPullUpType PullUp_state)
 {
-	if ( (Port_ID      < PORTA)                | (Port_ID      > PORTF)             |
-	     (Channel_ID   < PN0)                  | (Channel_ID   > PN7)               |
-		 (PullUp_state < RESET_PULL_UP)        | (PullUp_state > SET_PULL_UP)
-		)
+	if (
+		(Port_ID      > PORTF)             |
+	    (Channel_ID   > PN7)               |
+		(PullUp_state > SET_PULL_UP)
+	   )
 	{
 		return NOT_OK ;
 	}
@@ -347,14 +351,15 @@ Std_ReturnType PIN_SetPullUp               (GPIO_ChannelType Channel_ID,
 			break;
 		}
 	}
+	return 0;
 }
 
 /*******************************************************************************/
 
 /******************************************************************************
-* \Syntax          : Std_ReturnType PIN_SetPullDown             (GPIO_ChannelType Channel_ID,
-									                             GPIO_PortType Port_ID,
-											                     GPIO_PinPullDownType PullDown_state)
+* \Syntax          :static Std_ReturnType PIN_SetPullDown             (GPIO_PortType Port_ID,
+											                    	   GPIO_ChannelType Channel_ID,
+										                               GPIO_PinPullDownType PullDown_state)
 * \Description     :set  pull down attach of pin
 *
 * \Sync\Async      : Synchronous
@@ -366,14 +371,14 @@ Std_ReturnType PIN_SetPullUp               (GPIO_ChannelType Channel_ID,
 * \Return value:   : Std_ReturnType        OK
 *                                          NOT_OK =-1
 *******************************************************************************/
-Std_ReturnType PIN_SetPullDown             (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_PinPullDownType PullDown_state)
+static Std_ReturnType PIN_SetPullDown             (GPIO_PortType Port_ID,
+												   GPIO_ChannelType Channel_ID,
+										           GPIO_PinPullDownType PullDown_state)
 {
-	if ( (Port_ID        < PORTA)                | (Port_ID        > PORTF)             |
-	     (Channel_ID     < PN0)                  | (Channel_ID     > PN7)               |
-		 (PullDown_state < RESET_PULL_DOEN)      | (PullDown_state > SET_PULL_DOWN)
-		)
+	if (  (Port_ID        > PORTF)             |
+	      (Channel_ID     > PN7)               |
+		  (PullDown_state > SET_PULL_DOWN)
+	   )
 	{
 		return NOT_OK ;
 	}
@@ -458,14 +463,15 @@ Std_ReturnType PIN_SetPullDown             (GPIO_ChannelType Channel_ID,
 			break;
 		}
 	}
+	return 0;
 }
 
 /*******************************************************************************/
 
 /******************************************************************************
-* \Syntax          : Std_ReturnType PIN_SetOpenDrain           (GPIO_ChannelType Channel_ID,
-									                            GPIO_PortType Port_ID,
-										                     	GPIO_PinOpenDrainType OpenDrain_state)
+* \Syntax          : static Std_ReturnType PIN_SetOpenDrain           (GPIO_PortType Port_ID,
+											                      	   GPIO_ChannelType Channel_ID,
+										                               GPIO_PinOpenDrainType OpenDrain_state)
 * \Description     :set  open drain attach of pin
 *
 * \Sync\Async      : Synchronous
@@ -477,13 +483,13 @@ Std_ReturnType PIN_SetPullDown             (GPIO_ChannelType Channel_ID,
 * \Return value:   : Std_ReturnType        OK
 *                                          NOT_OK =-1
 *******************************************************************************/
-Std_ReturnType PIN_SetOpenDrain           (GPIO_ChannelType Channel_ID,
-									       GPIO_PortType Port_ID,
-										   GPIO_PinOpenDrainType OpenDrain_state)
+static Std_ReturnType PIN_SetOpenDrain           (GPIO_PortType Port_ID,
+												  GPIO_ChannelType Channel_ID,
+										          GPIO_PinOpenDrainType OpenDrain_state)
 {
-	if ( (Port_ID         < PORTA)                | (Port_ID         > PORTF)             |
-	     (Channel_ID      < PN0)                  | (Channel_ID      > PN7)               |
-		 (OpenDrain_state < RESET_OPEN_DRAIN)     | (OpenDrain_state > SET_OPEN_DRAIN)
+	if (  (Port_ID         > PORTF)             |
+	      (Channel_ID      > PN7)               |
+		  (OpenDrain_state > SET_OPEN_DRAIN)
 		)
 	{
 		return NOT_OK ;
@@ -569,6 +575,7 @@ Std_ReturnType PIN_SetOpenDrain           (GPIO_ChannelType Channel_ID,
 			break;
 		}
 	}
+	return 0;
 }
 
 
@@ -588,14 +595,14 @@ Std_ReturnType PIN_SetOpenDrain           (GPIO_ChannelType Channel_ID,
 * \Return value:   : Std_ReturnType        OK
 *                                          NOT_OK =-1
 *******************************************************************************/
-Std_ReturnType PIN_SetSlewRate             (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_PinSlewRateType SlewRate_state)
+static Std_ReturnType PIN_SetSlewRate             (GPIO_PortType Port_ID,
+												   GPIO_ChannelType Channel_ID,
+											       GPIO_PinSlewRateType SlewRate_state)
 {
-	if ( (Port_ID      < PORTA)                | (Port_ID      > PORTF)             |
-	     (Channel_ID   < PN0)                  | (Channel_ID   > PN7)               |
-		 (SlewRate_state < RESET_SLEW_RATE)    | (SlewRate_state > SET_SLEW_RARE)
-		)
+	if (   (Port_ID      > PORTF)             |
+	       (Channel_ID   > PN7)               |
+		   (SlewRate_state > SET_SLEW_RARE)
+	   )
 	{
 		return NOT_OK ;
 	}
@@ -680,34 +687,35 @@ Std_ReturnType PIN_SetSlewRate             (GPIO_ChannelType Channel_ID,
 			break;
 		}
 	}
+	return 0;
 }
 
 
 
 /***************************************************************************************/
 /******************************************************************************
-* \Syntax          : Std_ReturnType PIN_MaskInterrupt           (GPIO_ChannelType Channel_ID,
-								                                 GPIO_PortType Port_ID,
-											                     GPIO_InterruptMaskType int_mode)
+* \Syntax          :  Std_ReturnType PIN_MaskInterrupt           ( GPIO_PortType Port_ID,
+												                       	GPIO_ChannelType Channel_ID,
+										                             	GPIO_InterruptMaskType int_mode)
 
-* \Description     :set  slew rate attach of pin
+* \Description     : pin mask interrupt
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
 * \Parameters (in) : Channel_ID        >>  pin number
 *                    Port_ID           >>  port number
-*                    PullUp_state      >>  slew rate attach
+*                    int_mode          >>  pin mask interrupt
 * \Parameters (out): None
 * \Return value:   : Std_ReturnType        OK
 *                                          NOT_OK =-1
 *******************************************************************************/
-Std_ReturnType PIN_MaskInterrupt           (GPIO_ChannelType Channel_ID,
-								            GPIO_PortType Port_ID,
-											GPIO_InterruptMaskType int_mode)
+ Std_ReturnType PIN_MaskInterrupt           ( GPIO_PortType Port_ID,
+													GPIO_ChannelType Channel_ID,
+										         	GPIO_InterruptMaskType int_mode)
 {
-	if ( (Port_ID      < PORTA)                | (Port_ID      > PORTF)             |
-	     (Channel_ID   < PN0)                  | (Channel_ID   > PN7)               |
-		 (int_mode     < INT_MASKED)           | (int_mode     > INT_UNMASKED)
+	if (  (Port_ID      > PORTF)             |
+	      (Channel_ID   > PN7)               |
+		  (int_mode     > INT_UNMASKED)
 		)
 	{
 		return NOT_OK ;
@@ -793,33 +801,34 @@ Std_ReturnType PIN_MaskInterrupt           (GPIO_ChannelType Channel_ID,
 			break;
 		}
 	}
+	return 0;
 }
 
 
 
 /***************************************************************************************/
 /******************************************************************************
-* \Syntax          :Std_ReturnType PIN_SenseInterrupt          (GPIO_ChannelType Channel_ID,
-									                            GPIO_PortType Port_ID,
-											                    GPIO_InterruptSenseType sense );
-* \Description     :set  slew rate attach of pin
+* \Syntax          : Std_ReturnType PIN_SenseInterrupt          (GPIO_PortType Port_ID,
+												                       GPIO_ChannelType Channel_ID,
+										                               GPIO_InterruptSenseType sense )
+* \Description     :set level or edge interrupt sense
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
 * \Parameters (in) : Channel_ID        >>  pin number
 *                    Port_ID           >>  port number
-*                    PullUp_state      >>  slew rate attach
+*                    sense             >>  set level or edge interrupt sense
 * \Parameters (out): None
 * \Return value:   : Std_ReturnType        OK
 *                                          NOT_OK =-1
 *******************************************************************************/
-Std_ReturnType PIN_SenseInterrupt          (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_InterruptSenseType sense )
+ Std_ReturnType PIN_SenseInterrupt          (GPIO_PortType Port_ID,
+												   GPIO_ChannelType Channel_ID,
+										           GPIO_InterruptSenseType sense )
 {
-	if ( (Port_ID      < PORTA)                | (Port_ID      > PORTF)             |
-	     (Channel_ID   < PN0)                  | (Channel_ID   > PN7)               |
-		 (sense        < EDGE_SENSE)           | (sense        > LEVEL_SENSE)
+	if (  (Port_ID      > PORTF)             |
+	      (Channel_ID   > PN7)               |
+	      (sense        > LEVEL_SENSE)
 		)
 	{
 		return NOT_OK ;
@@ -905,6 +914,7 @@ Std_ReturnType PIN_SenseInterrupt          (GPIO_ChannelType Channel_ID,
 			break;
 		}
 	}
+	return 0;
 }
 
 
@@ -912,27 +922,27 @@ Std_ReturnType PIN_SenseInterrupt          (GPIO_ChannelType Channel_ID,
 /***************************************************************************************/
 
 /******************************************************************************
-* \Syntax          Std_ReturnType PIN_BothInterrupt           (GPIO_ChannelType Channel_ID,
-									                           GPIO_PortType Port_ID,
-											                   GPIO_InterruptBothType both_mode );
-* \Description     :set  slew rate attach of pin
+* \Syntax           Std_ReturnType PIN_BothInterrupt           ( GPIO_PortType Port_ID,
+													                   GPIO_ChannelType Channel_ID,
+										         	                   GPIO_InterruptBothType both_mode )
+* \Description     :set both edges or not
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
 * \Parameters (in) : Channel_ID        >>  pin number
 *                    Port_ID           >>  port number
-*                    PullUp_state      >>  slew rate attach
+*                    both_mode         >>  set both edges or not
 * \Parameters (out): None
 * \Return value:   : Std_ReturnType        OK
 *                                          NOT_OK =-1
 *******************************************************************************/
-Std_ReturnType PIN_BothInterrupt           (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_InterruptBothType both_mode )
+ Std_ReturnType PIN_BothInterrupt                 ( GPIO_PortType Port_ID,
+													GPIO_ChannelType Channel_ID,
+										         	GPIO_InterruptBothType both_mode )
 {
-	if ( (Port_ID      < PORTA)                | (Port_ID      > PORTF)             |
-	     (Channel_ID   < PN0)                  | (Channel_ID   > PN7)               |
-		 (both_mode    < EVENT_CONTROL)        | (both_mode    > BOTH_EDGES)
+	if (  (Port_ID      > PORTF)             |
+	      (Channel_ID   > PN7)               |
+	      (both_mode    > BOTH_EDGES)
 		)
 	{
 		return NOT_OK ;
@@ -1018,33 +1028,34 @@ Std_ReturnType PIN_BothInterrupt           (GPIO_ChannelType Channel_ID,
 			break;
 		}
 	}
+	return 0;
 }
 
 
 /***************************************************************************************/
 
 /******************************************************************************
-* \Syntax         Std_ReturnType PIN_EventInterrupt          (GPIO_ChannelType Channel_ID,
-									                          GPIO_PortType Port_ID,
-											                  GPIO_InterruptEventType trigger_state )
-* \Description     :set  slew rate attach of pin
+* \Syntax        Std_ReturnType PIN_EventInterrupt          ( GPIO_PortType Port_ID,
+										                  	  GPIO_ChannelType Channel_ID,
+										                      GPIO_InterruptEventType trigger_state )
+* \Description     :set trigger state raising-high or falling-low
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
 * \Parameters (in) : Channel_ID        >>  pin number
 *                    Port_ID           >>  port number
-*                    PullUp_state      >>  slew rate attach
+*                    trigger_state     >>  set trigger state raising-high or falling-low
 * \Parameters (out): None
 * \Return value:   : Std_ReturnType        OK
 *                                          NOT_OK =-1
 *******************************************************************************/
-Std_ReturnType PIN_EventInterrupt          (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_InterruptEventType trigger_state )
+Std_ReturnType PIN_EventInterrupt          ( GPIO_PortType Port_ID,
+											 GPIO_ChannelType Channel_ID,
+										     GPIO_InterruptEventType trigger_state )
 {
-	if ( (Port_ID        < PORTA)                | (Port_ID       > PORTF)             |
-	     (Channel_ID     < PN0)                  | (Channel_ID    > PN7)               |
-		 (trigger_state  < FALLING_LOW)          | (trigger_state > RAISING_HIGH)
+	if (  (Port_ID       > PORTF)             |
+	      (Channel_ID    > PN7)               |
+		  (trigger_state > RAISING_HIGH)
 		)
 	{
 		return NOT_OK ;
@@ -1130,30 +1141,31 @@ Std_ReturnType PIN_EventInterrupt          (GPIO_ChannelType Channel_ID,
 			break;
 		}
 	}
+	return 0;
 }
 
 
 /***************************************************************************************/
 
 /******************************************************************************
-* \Syntax        Std_ReturnType PIN_MaskedStatusInterrupt   (GPIO_ChannelType  Channel_ID,
-								                             GPIO_PortType     Port_ID)
-* \Description     :set  slew rate attach of pin
+* \Syntax        Std_ReturnType PIN_MaskedStatusInterrupt          (GPIO_PortType     Port_ID,
+												                   GPIO_ChannelType  Channel_ID)
+* \Description     :Read masked status interrupt
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
 * \Parameters (in) : Channel_ID        >>  pin number
 *                    Port_ID           >>  port number
-*                    PullUp_state      >>  slew rate attach
 * \Parameters (out): None
 * \Return value:   : Std_ReturnType        OK
 *                                          NOT_OK =-1
 *******************************************************************************/
-Std_ReturnType PIN_MaskedStatusInterrupt   (GPIO_ChannelType  Channel_ID,
-								            GPIO_PortType     Port_ID)
+ Std_ReturnType PIN_MaskedStatusInterrupt          (GPIO_PortType     Port_ID,
+												    GPIO_ChannelType  Channel_ID)
+
 {
-	if ( (Port_ID        < PORTA)    | (Port_ID       > PORTF) |
-	     (Channel_ID     < PN0)      | (Channel_ID    > PN7)
+	if (   (Port_ID       > PORTF) |
+	       (Channel_ID    > PN7)
 		)
 	{
 		return NOT_OK ;
@@ -1195,29 +1207,28 @@ Std_ReturnType PIN_MaskedStatusInterrupt   (GPIO_ChannelType  Channel_ID,
 			}
 		}
 	}
+	return 0;
 }
 
 
-/***************************************************************************************/
 /******************************************************************************
-* \Syntax        Std_ReturnType PIN_RawStatusInterrupt      (GPIO_ChannelType Channel_ID,
-								                             GPIO_PortType Port_ID);
-* \Description     :set  slew rate attach of pin
+* \Syntax         Std_ReturnType PIN_RawStatusInterrupt      (GPIO_PortType Port_ID,
+										                  	 GPIO_ChannelType Channel_ID )
+* \Description     :Read masked status interrupt
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
 * \Parameters (in) : Channel_ID        >>  pin number
 *                    Port_ID           >>  port number
-*                    PullUp_state      >>  slew rate attach
 * \Parameters (out): None
 * \Return value:   : Std_ReturnType        OK
 *                                          NOT_OK =-1
 *******************************************************************************/
-Std_ReturnType PIN_RawStatusInterrupt      (GPIO_ChannelType Channel_ID,
-								            GPIO_PortType Port_ID)
+ Std_ReturnType PIN_RawStatusInterrupt      (GPIO_PortType Port_ID,
+											 GPIO_ChannelType Channel_ID )
 {
-	if ( (Port_ID        < PORTA)    | (Port_ID       > PORTF) |
-	     (Channel_ID     < PN0)      | (Channel_ID    > PN7)
+	if ( (Port_ID       > PORTF) |
+	     (Channel_ID    > PN7)
 		)
 	{
 		return NOT_OK ;
@@ -1259,30 +1270,30 @@ Std_ReturnType PIN_RawStatusInterrupt      (GPIO_ChannelType Channel_ID,
 			}
 		}
 	}
+	return 0;
 }
 
 
 /***************************************************************************************/
 
 /******************************************************************************
-* \Syntax        Std_ReturnType PIN_ClearInterrupt          (GPIO_ChannelType Channel_ID,
-								                             GPIO_PortType Port_ID);
-* \Description     :set  slew rate attach of pin
+* \Syntax        Std_ReturnType PIN_ClearInterrupt          ( GPIO_PortType    Port_ID,
+											                  GPIO_ChannelType Channel_ID )
+* \Description     :clear interrupt
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
 * \Parameters (in) : Channel_ID        >>  pin number
 *                    Port_ID           >>  port number
-*                    PullUp_state      >>  slew rate attach
 * \Parameters (out): None
 * \Return value:   : Std_ReturnType        OK
 *                                          NOT_OK =-1
 *******************************************************************************/
-Std_ReturnType PIN_ClearInterrupt          (GPIO_ChannelType Channel_ID,
-								            GPIO_PortType    Port_ID)
+ Std_ReturnType PIN_ClearInterrupt          ( GPIO_PortType    Port_ID,
+											  GPIO_ChannelType Channel_ID )
 {
-	if ( (Port_ID        < PORTA)    | (Port_ID       > PORTF) |
-	     (Channel_ID     < PN0)      | (Channel_ID    > PN7)
+	if (  (Port_ID       > PORTF) |
+	      (Channel_ID    > PN7)
 		)
 	{
 		return NOT_OK ;
@@ -1330,6 +1341,7 @@ Std_ReturnType PIN_ClearInterrupt          (GPIO_ChannelType Channel_ID,
 			break;
 		}
 	}
+	return 0 ;
 }
 
 
@@ -1337,23 +1349,22 @@ Std_ReturnType PIN_ClearInterrupt          (GPIO_ChannelType Channel_ID,
 
 
 /******************************************************************************
-* \Syntax       Std_ReturnType PIN_Lock                     (GPIO_PortType Port_ID,
-										                     GPIO_LockType lock_state);
-* \Description     :set  slew rate attach of pin
+* \Syntax           Std_ReturnType PIN_Lock                     (GPIO_PortType Port_ID,
+										                       GPIO_LockType lock_state);
+* \Description     :unlock protected pins
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
-* \Parameters (in) : Channel_ID        >>  pin number
-*                    Port_ID           >>  port number
-*                    PullUp_state      >>  slew rate attach
+* \Parameters (in) : Channel_ID         >>  pin number
+*                    lock_state         >>  lock status
 * \Parameters (out): None
 * \Return value:   : Std_ReturnType        OK
 *                                          NOT_OK =-1
 *******************************************************************************/
-Std_ReturnType     PIN_Lock                     (GPIO_PortType Port_ID,
-											     GPIO_LockType lock_state)
+ Std_ReturnType     PIN_Lock                     (GPIO_PortType Port_ID,
+											      GPIO_LockType lock_state)
 {
-	if ( (Port_ID     > PORTF) | (lock_state    > UNLOCKED) )
+	if ( lock_state    >  UNLOCKED )
 
 	{
 		return NOT_OK ;
@@ -1425,29 +1436,28 @@ Std_ReturnType     PIN_Lock                     (GPIO_PortType Port_ID,
 			break;
 		}
 	}
+	return 0;
 }
 
-/***************************************************************************************/
 /******************************************************************************
 * \Syntax       Std_ReturnType PIN_Commit                   (GPIO_PortType Port_ID,
 											                 GPIO_ChannelType Channel_ID);
-* \Description     :set  slew rate attach of pin
+* \Description     :PIN commit for unlocking
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
 * \Parameters (in) : Channel_ID        >>  pin number
 *                    Port_ID           >>  port number
-*                    PullUp_state      >>  slew rate attach
 * \Parameters (out): None
 * \Return value:   : Std_ReturnType        OK
 *                                          NOT_OK =-1
 *******************************************************************************/
-Std_ReturnType PIN_Commit                   (GPIO_PortType Port_ID,
+ Std_ReturnType PIN_Commit                   (GPIO_PortType Port_ID,
 											 GPIO_ChannelType Channel_ID)
 {
-	if ( (Port_ID        < PORTA)    | (Port_ID       > PORTF) |
-	     (Channel_ID     < PN0)      | (Channel_ID    > PN7)
-		)
+	if ((Port_ID       > PORTF) |
+	    (Channel_ID    > PN7)
+	   )
 	{
 		return NOT_OK ;
 	}
@@ -1494,26 +1504,29 @@ Std_ReturnType PIN_Commit                   (GPIO_PortType Port_ID,
 			break;
 		}
 	}
+	return 0;
 }
 
 /******************************************************************************
-* \Syntax         Std_ReturnType PIN_EventInterrupt          (GPIO_ChannelType Channel_ID,
-									                          GPIO_PortType Port_ID,
-											                  GPIO_InterruptEventType trigger_state )
-* \Description     :set  slew rate attach of pin
+* \Syntax         static Std_ReturnType PIN_PortControl             (GPIO_PortType Port_ID,
+												   GPIO_ChannelType Channel_ID,
+										           GPIO_PortControlType function )
+
+
+* \Description     :selects the specific peripheral signal for each GPIO pin when using the alternate function mode
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
 * \Parameters (in) : Channel_ID        >>  pin number
 *                    Port_ID           >>  port number
-*                    PullUp_state      >>  slew rate attach
+*                    function          >>  specific peripheral signal
 * \Parameters (out): None
-* \Return value:   : Std_ReturnType        OK
+* \Return value:   : static Std_ReturnType        OK
 *                                          NOT_OK =-1
 *******************************************************************************/
-Std_ReturnType PIN_PortControl             (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_PortControlType function )
+static Std_ReturnType PIN_PortControl             (GPIO_PortType Port_ID,
+												   GPIO_ChannelType Channel_ID,
+										           GPIO_PortControlType function )
 {
 	if (  (Port_ID       > PORTF)             |
 	      (Channel_ID    > PN7)
@@ -1564,30 +1577,31 @@ Std_ReturnType PIN_PortControl             (GPIO_ChannelType Channel_ID,
 			break;
 		}
 	}
+	return 0;
 }
 
 /******************************************************************************
-* \Syntax         Std_ReturnType PIN_ADCControl              (GPIO_ChannelType Channel_ID,
-									                          GPIO_PortType Port_ID,
-											                  GPIO_ADCControlType state )
-* \Description     :set  slew rate attach of pin
+* \Syntax         static Std_ReturnType PIN_ADCControl              (GPIO_PortType Port_ID,
+											                    	 GPIO_ChannelType Channel_ID,
+											                         GPIO_ADCControlType state )
+* \Description     : used to configure a GPIO pin as a source for the ADC trigger.
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
 * \Parameters (in) : Channel_ID        >>  pin number
 *                    Port_ID           >>  port number
-*                    PullUp_state      >>  slew rate attach
+*                    state             >>  set or reset
 * \Parameters (out): None
 * \Return value:   : Std_ReturnType        OK
 *                                          NOT_OK =-1
 *******************************************************************************/
-Std_ReturnType PIN_ADCControl              (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_ADCControlType state )
+static Std_ReturnType PIN_ADCControl              (GPIO_PortType Port_ID,
+												   GPIO_ChannelType Channel_ID,
+											       GPIO_ADCControlType state )
 {
-	if ( (Port_ID        < PORTA)                | (Port_ID       > PORTF)             |
-	     (Channel_ID     < PN0)                  | (Channel_ID    > PN7)               |
-		 (state          < DIS_ADC_TRI)          | (state         > EN_ADC_TRI)
+	if (    (Port_ID       > PORTF)             |
+	        (Channel_ID    > PN7)               |
+		   (state         > EN_ADC_TRI)
 		)
 	{
 		return NOT_OK ;
@@ -1673,32 +1687,33 @@ Std_ReturnType PIN_ADCControl              (GPIO_ChannelType Channel_ID,
 			break;
 		}
 	}
+	return 0;
 }
 
 
 /***************************************************************************************/
 /******************************************************************************
-* \Syntax         Std_ReturnType PIN_DMAControl              (GPIO_ChannelType Channel_ID,
-									                          GPIO_PortType Port_ID,
-										                      GPIO_DMAControlType state )
-* \Description     :set  slew rate attach of pin
+* \Syntax         Std_ReturnType PIN_DMAControl              ( GPIO_PortType Port_ID,
+*                                                              GPIO_ChannelType Channel_ID,
+ 										                       GPIO_DMAControlType state )
+* \Description     :used to configure a GPIO pin as a source for the DMA trigger.
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
 * \Parameters (in) : Channel_ID        >>  pin number
 *                    Port_ID           >>  port number
-*                    PullUp_state      >>  slew rate attach
+*                    state             >>  set or not
 * \Parameters (out): None
 * \Return value:   : Std_ReturnType        OK
 *                                          NOT_OK =-1
 *******************************************************************************/
-Std_ReturnType PIN_DMAControl              (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_DMAControlType state )
+static Std_ReturnType PIN_DMAControl              ( GPIO_PortType Port_ID,
+													GPIO_ChannelType Channel_ID,
+											        GPIO_DMAControlType state )
 {
-	if ( (Port_ID        < PORTA)                | (Port_ID       > PORTF)             |
-	     (Channel_ID     < PN0)                  | (Channel_ID    > PN7)               |
-		 (state          < DIS_DMA_TRI)          | (state         > EN_DMA_TRI)
+	if ( (Port_ID       > PORTF)             |
+	     (Channel_ID    > PN7)               |
+		 (state         > EN_DMA_TRI)
 		)
 	{
 		return NOT_OK ;
@@ -1784,15 +1799,19 @@ Std_ReturnType PIN_DMAControl              (GPIO_ChannelType Channel_ID,
 			break;
 		}
 	}
+	return 0;
 }
 
 
 /***************************************************************************************/
 /******************************************************************************
-* \Syntax         Std_ReturnType PIN_AnalogMode              (GPIO_ChannelType Channel_ID,
-									                          GPIO_PortType Port_ID,
-											                  GPIO_AnalogType state )
-* \Description     :set  slew rate attach of pin
+* \Syntax         static Std_ReturnType PIN_AnalogMode              ( GPIO_PortType Port_ID,
+											                	   	GPIO_ChannelType Channel_ID,
+										         	                  GPIO_AnalogType state )
+
+* \Description     :     This register is only valid for ports and pins that can be used as ADC AINx inputs.
+                         If any pin is to be used as an ADC input, the appropriate bit in GPIOAMSEL must be
+                         set to disable the analog isolation circuit
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
@@ -1803,13 +1822,13 @@ Std_ReturnType PIN_DMAControl              (GPIO_ChannelType Channel_ID,
 * \Return value:   : Std_ReturnType        OK
 *                                          NOT_OK =-1
 *******************************************************************************/
-Std_ReturnType PIN_AnalogMode              (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_AnalogType state )
+static Std_ReturnType PIN_AnalogMode              ( GPIO_PortType Port_ID,
+													GPIO_ChannelType Channel_ID,
+										         	GPIO_AnalogType state )
 {
-	if ( (Port_ID        < PORTA)                | (Port_ID       > PORTF)             |
-	     (Channel_ID     < PN0)                  | (Channel_ID    > PN7)               |
-		 (state          < RESET_ANALOG)         | (state         > SET_ANALOG)
+	if ( (Port_ID       > PORTF)             |
+	     (Channel_ID    > PN7)               |
+	     (state         > SET_ANALOG)
 		)
 	{
 		return NOT_OK ;
@@ -1895,30 +1914,33 @@ Std_ReturnType PIN_AnalogMode              (GPIO_ChannelType Channel_ID,
 			break;
 		}
 	}
+	return 0;
 }
 
 /******************************************************************************
-* \Syntax        Std_ReturnType PIN_AlternativeFunction     (GPIO_ChannelType Channel_ID,
-									                         GPIO_PortType Port_ID,
-											                 GPIO_AlternativeFunctionType state );
-* \Description     :set  slew rate attach of pin
+* \Syntax        static Std_ReturnType PIN_AlternativeFunction     (GPIO_PortType Port_ID,
+												                    GPIO_ChannelType Channel_ID,
+											                        GPIO_AlternativeFunctionType state )
+{
+* \Description     :Setting a bit in this register configures the
+                    corresponding GPIO line to be controlled by an associated peripheral
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
 * \Parameters (in) : Channel_ID        >>  pin number
 *                    Port_ID           >>  port number
-*                    PullUp_state      >>  slew rate attach
+*                    state             >>  set or not
 * \Parameters (out): None
 * \Return value:   : Std_ReturnType        OK
 *                                          NOT_OK =-1
 *******************************************************************************/
-Std_ReturnType PIN_AlternativeFunction     (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_AlternativeFunctionType state )
+static Std_ReturnType PIN_AlternativeFunction     (GPIO_PortType Port_ID,
+												   GPIO_ChannelType Channel_ID,
+											       GPIO_AlternativeFunctionType state )
 {
-	if ( (Port_ID        < PORTA)                | (Port_ID       > PORTF)             |
-	     (Channel_ID     < PN0)                  | (Channel_ID    > PN7)               |
-		 (state          < RESET_ALTERNATIVE)    | (state         > SET_ALTERNATIVE)
+	if (  (Port_ID       > PORTF)             |
+	      (Channel_ID    > PN7)               |
+	      (state         > SET_ALTERNATIVE)
 		)
 	{
 		return NOT_OK ;
@@ -2004,34 +2026,33 @@ Std_ReturnType PIN_AlternativeFunction     (GPIO_ChannelType Channel_ID,
 			break;
 		}
 	}
+	return 0;
 }
 
 /*************************************************************************************/
 /******************************************************************************
-* \Syntax        Std_ReturnType PIN_AlternativeFunction     Std_ReturnType PIN_CurrentDrive            (GPIO_ChannelType Channel_ID,
-									                        GPIO_PortType Port_ID,
-										                 	GPIO_PinOutputCurrentType drive )
-* \Description     :set  slew rate attach of pin
+* \Syntax        static Std_ReturnType PIN_CurrentDrive            ( GPIO_PortType Port_ID,
+												                     GPIO_ChannelType Channel_ID,
+											                         GPIO_PinOutputCurrentType drive )
+* \Description     :drive control
+*                   By default, all GPIO pins have 2-mA drive.
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
 * \Parameters (in) : Channel_ID        >>  pin number
 *                    Port_ID           >>  port number
-*                    PullUp_state      >>  slew rate attach
+*                    drive             >>  current value
 * \Parameters (out): None
 * \Return value:   : Std_ReturnType        OK
 *                                          NOT_OK =-1
 *******************************************************************************/
-Std_ReturnType PIN_CurrentDrive            (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_PinOutputCurrentType drive )
+static Std_ReturnType PIN_CurrentDrive            ( GPIO_PortType Port_ID,
+													GPIO_ChannelType Channel_ID,
+											        GPIO_PinOutputCurrentType drive )
 {
-	if ( (Port_ID        < PORTA)                | (Port_ID       > PORTF)             |
-	     (Channel_ID     < PN0)                  | (Channel_ID    > PN7)               |
-		 (drive          < CURRENT_2MA)          | (drive         > CURRENT_8MA)
-		)
+	if ((Port_ID > PORTF) | (Channel_ID > PN7) | (drive > CURRENT_8MA))
 	{
-		return NOT_OK ;
+		return NOT_OK;
 	}
 	else
 	{
@@ -2040,57 +2061,57 @@ Std_ReturnType PIN_CurrentDrive            (GPIO_ChannelType Channel_ID,
 		case PORTA:
 			if (drive == CURRENT_2MA)
 			{
-				Set_Pin(GPIOA_DR2R ,Channel_ID);
+				Set_Pin(GPIOA_DR2R, Channel_ID);
 			}
 			else if (drive == CURRENT_4MA)
 			{
-				Set_Pin(GPIOA_DR4R ,Channel_ID);
+				Set_Pin(GPIOA_DR4R, Channel_ID);
 			}
 			else
 			{
-				Set_Pin(GPIOA_DR8R ,Channel_ID);
+				Set_Pin(GPIOA_DR8R, Channel_ID);
 			}
 			break;
 		case PORTB:
 			if (drive == CURRENT_2MA)
 			{
-				Set_Pin(GPIOB_DR2R ,Channel_ID);
+				Set_Pin(GPIOB_DR2R, Channel_ID);
 			}
 			else if (drive == CURRENT_4MA)
 			{
-				Set_Pin(GPIOB_DR4R ,Channel_ID);
+				Set_Pin(GPIOB_DR4R, Channel_ID);
 			}
 			else
 			{
-				Set_Pin(GPIOB_DR8R ,Channel_ID);
+				Set_Pin(GPIOB_DR8R, Channel_ID);
 			}
 			break;
 		case PORTC:
 			if (drive == CURRENT_2MA)
 			{
-				Set_Pin(GPIOC_DR2R ,Channel_ID);
+				Set_Pin(GPIOC_DR2R, Channel_ID);
 			}
 			else if (drive == CURRENT_4MA)
 			{
-				Set_Pin(GPIOC_DR4R ,Channel_ID);
+				Set_Pin(GPIOC_DR4R, Channel_ID);
 			}
 			else
 			{
-				Set_Pin(GPIOC_DR8R ,Channel_ID);
+				Set_Pin(GPIOC_DR8R, Channel_ID);
 			}
 			break;
 		case PORTD:
 			if (drive == CURRENT_2MA)
 			{
-				Set_Pin(GPIOC_DR2R ,Channel_ID);
+				Set_Pin(GPIOC_DR2R, Channel_ID);
 			}
 			else if (drive == CURRENT_4MA)
 			{
-				Set_Pin(GPIOC_DR4R ,Channel_ID);
+				Set_Pin(GPIOC_DR4R, Channel_ID);
 			}
 			else
 			{
-				Set_Pin(GPIOC_DR8R ,Channel_ID);
+				Set_Pin(GPIOC_DR8R, Channel_ID);
 			}
 			break;
 		case PORTE:
@@ -2102,15 +2123,15 @@ Std_ReturnType PIN_CurrentDrive            (GPIO_ChannelType Channel_ID,
 			{
 				if (drive == CURRENT_2MA)
 				{
-					Set_Pin(GPIOE_DR2R ,Channel_ID);
+					Set_Pin(GPIOE_DR2R, Channel_ID);
 				}
 				else if (drive == CURRENT_4MA)
 				{
-					Set_Pin(GPIOE_DR4R ,Channel_ID);
+					Set_Pin(GPIOE_DR4R, Channel_ID);
 				}
 				else
 				{
-					Set_Pin(GPIOE_DR8R ,Channel_ID);
+					Set_Pin(GPIOE_DR8R, Channel_ID);
 				}
 			}
 			break;
@@ -2124,40 +2145,37 @@ Std_ReturnType PIN_CurrentDrive            (GPIO_ChannelType Channel_ID,
 			{
 				if (drive == CURRENT_2MA)
 				{
-					Set_Pin(GPIOF_DR2R ,Channel_ID);
+					Set_Pin(GPIOF_DR2R, Channel_ID);
 				}
 				else if (drive == CURRENT_4MA)
 				{
-					Set_Pin(GPIOF_DR4R ,Channel_ID);
+					Set_Pin(GPIOF_DR4R, Channel_ID);
 				}
 				else
 				{
-					Set_Pin(GPIOF_DR8R ,Channel_ID);
+					Set_Pin(GPIOF_DR8R, Channel_ID);
 				}
 			}
 			break;
 		}
 	}
+return 0;
 }
-
-/*************************************************************************************/
 
 /******************************************************************************
 * \Syntax        Std_ReturnType  GPIO_Init (const GPIO_ConfigType *Port_ConfigPtr);
 
-* \Description     :set  slew rate attach of pin
+* \Description     :init GPIO Pins
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
-* \Parameters (in) : Channel_ID        >>  pin number
-*                    Port_ID           >>  port number
-*                    PullUp_state      >>  slew rate attach
+* \Parameters (in) : Port_ConfigPtr >> pointer to configuration array
 * \Parameters (out): None
 * \Return value:   : Std_ReturnType        OK
 *                                          NOT_OK =-1
 *******************************************************************************/
 
-Std_ReturnType GPIO_Init(const GPIO_ConfigType *Port_ConfigPtr)
+ Std_ReturnType GPIO_Init(const GPIO_ConfigType *Port_ConfigPtr)
 {
 
 	uint8_t i;
@@ -2199,12 +2217,14 @@ Std_ReturnType GPIO_Init(const GPIO_ConfigType *Port_ConfigPtr)
 			case MODE_DIO:
 				break;
 			case MODE_ADC:
-				PIN_ADCControl(Port_ConfigPtr[i].ChannelType,
-								Port_ConfigPtr[i].PortType, 1);
+				PIN_ADCControl(Port_ConfigPtr[i].PortType,
+							   Port_ConfigPtr[i].ChannelType,
+								 EN_ADC_TRI);
 				break;
 			case MODE_DMA:
-				PIN_DMAControl(Port_ConfigPtr[i].ChannelType,
-								Port_ConfigPtr[i].PortType, 1);
+				PIN_DMAControl(Port_ConfigPtr[i].PortType,
+							   Port_ConfigPtr[i].ChannelType,
+								 EN_DMA_TRI);
 				break;
 			default:
 				return NOT_OK;
@@ -2214,11 +2234,13 @@ Std_ReturnType GPIO_Init(const GPIO_ConfigType *Port_ConfigPtr)
 			switch (Port_ConfigPtr[i].PinDirection)
 			{
 			case INPUT:
-				PIN_SetDirection(Port_ConfigPtr[i].ChannelType,
-									Port_ConfigPtr[i].PortType, 0);
+				PIN_SetDirection(Port_ConfigPtr[i].PortType,
+								 Port_ConfigPtr[i].ChannelType,
+									INPUT);
 			case OUTPUT:
-				PIN_SetDirection(Port_ConfigPtr[i].ChannelType,
-									Port_ConfigPtr[i].PortType, 1);
+				PIN_SetDirection(Port_ConfigPtr[i].PortType,
+								 Port_ConfigPtr[i].ChannelType,
+								 OUTPUT);
 			default: /*do nothing*/
 				break;
 			}
@@ -2227,20 +2249,26 @@ Std_ReturnType GPIO_Init(const GPIO_ConfigType *Port_ConfigPtr)
 			switch (Port_ConfigPtr[i].PinIntrnalAttach)
 			{
 			case PULL_UP_ATTACH:
-				PIN_SetPullUp(Port_ConfigPtr[i].ChannelType,
-							   Port_ConfigPtr[i].PortType, 1);
+				PIN_SetPullUp(Port_ConfigPtr[i].PortType,
+							  Port_ConfigPtr[i].ChannelType,
+							    SET_PULL_UP);
 				break;
 			case PULL_DOWN_ATTACH:
-				PIN_SetPullDown(Port_ConfigPtr[i].ChannelType,
-							   Port_ConfigPtr[i].PortType, 1);
+				PIN_SetPullDown(Port_ConfigPtr[i].PortType,
+								Port_ConfigPtr[i].ChannelType,
+							    SET_PULL_DOWN);
 				break;
 			case OPEN_DRAIN_ATTACH:
-				PIN_SetOpenDrain(Port_ConfigPtr[i].ChannelType,
-								Port_ConfigPtr[i].PortType, 1);
+				PIN_SetOpenDrain(Port_ConfigPtr[i].PortType,
+								 Port_ConfigPtr[i].ChannelType,
+								 SET_OPEN_DRAIN);
 			case SLEW_RATE__ATTACH:
-				PIN_SetSlewRate(Port_ConfigPtr[i].ChannelType,
-								Port_ConfigPtr[i].PortType, 1);
+				PIN_SetSlewRate(Port_ConfigPtr[i].PortType,
+								Port_ConfigPtr[i].ChannelType,
+								 SET_SLEW_RARE);
 				break;
+			case NON_CONFIGUERED_ATTACH :
+				break;               /*do nothing */
 			default: /*do nothing */
 				break;
 			}
@@ -2249,11 +2277,13 @@ Std_ReturnType GPIO_Init(const GPIO_ConfigType *Port_ConfigPtr)
 			switch (Port_ConfigPtr[i].PinLevel)
 			{
 			case PIN_LOW:
-				DIO_WriteChannel(Port_ConfigPtr[i].ChannelType,
-									Port_ConfigPtr[i].PortType, 0);
+				DIO_WriteChannel(Port_ConfigPtr[i].PortType,
+								 Port_ConfigPtr[i].ChannelType,
+								 PIN_LOW);
 			case PIN_HIGH:
-				DIO_WriteChannel(Port_ConfigPtr[i].ChannelType,
-									Port_ConfigPtr[i].PortType, 1);
+				DIO_WriteChannel(Port_ConfigPtr[i].PortType,
+								 Port_ConfigPtr[i].ChannelType,
+								 PIN_HIGH);
 			default: /*do nothing*/
 				break;
 			}
@@ -2261,25 +2291,42 @@ Std_ReturnType GPIO_Init(const GPIO_ConfigType *Port_ConfigPtr)
 			switch (Port_ConfigPtr[i].PinOutputCurrent)
 			{
 			case CURRENT_2MA:
-				PIN_CurrentDrive(Port_ConfigPtr[i].ChannelType,
-								Port_ConfigPtr[i].PortType, 0);
+				PIN_CurrentDrive(Port_ConfigPtr[i].PortType,
+								 Port_ConfigPtr[i].ChannelType,
+								CURRENT_2MA);
 				break;
 			case CURRENT_4MA:
-				PIN_CurrentDrive(Port_ConfigPtr[i].ChannelType,
-								Port_ConfigPtr[i].PortType, 1);
+				PIN_CurrentDrive(Port_ConfigPtr[i].PortType,
+								 Port_ConfigPtr[i].ChannelType,
+								CURRENT_4MA);
 				break;
 			case CURRENT_8MA:
-				PIN_CurrentDrive(Port_ConfigPtr[i].ChannelType,
-									Port_ConfigPtr[i].PortType, 2);
+				PIN_CurrentDrive(Port_ConfigPtr[i].PortType,
+									Port_ConfigPtr[i].ChannelType, CURRENT_8MA);
 
 			default: /*do nothing */
 				break;
 			}
 /******************************************************8******************************************/
+/**************************************SET DIGITAL ENABLE ******************************************/
+			switch (Port_ConfigPtr[i].PinDigitalStatus)
+			{
+			case RESET_DIGITAL_ENABLE:
+				PIN_SetDigitalEnable(Port_ConfigPtr[i].PortType,
+									Port_ConfigPtr[i].ChannelType, RESET_DIGITAL_ENABLE);
+				break;
+			case SET_DIGITAL_ENABLE:
+				PIN_SetDigitalEnable(Port_ConfigPtr[i].PortType,
+									Port_ConfigPtr[i].ChannelType, SET_DIGITAL_ENABLE);
+				break;
+			default: /*do nothing */
+				break;
+			}
+			/******************************************************8******************************************/
 
 		}
 	}
+	return 0;
 }
-
 
 

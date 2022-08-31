@@ -5,9 +5,13 @@
  *         File:  SysCtr.h
  *       Module:  clock
  *
- *  Description:  <Write File DESCRIPTION here>
+ *  Description:  ---  Peripheral Clock Gating Control
+ *                --- control of system clocl by PLL
  *
- *********************************************************************************************************************/
+ ********************************************************************************************************************* *********************************************************************************************************************
+ *** NAME: Mohamed Hassaneen Ahmed
+ *** DATE: 18/8/2022
+**********************************************************************************************************************/
 #ifndef CLOCK_SYSCTR_H_
 #define CLOCK_SYSCTR_H_
 
@@ -15,6 +19,8 @@
  * INCLUDES
  *********************************************************************************************************************/
 #include "STD_Types.h"
+#include "SysCtr_Reg.h"
+#include "SysCtr_Types.h"
 #include "NVIC_Types.h"
 #include "Macros.h"
 #include  "Compiler.h"
@@ -22,71 +28,43 @@
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
-
-
-/**********************************************************************************************************************
- *  GLOBAL FUNCTION MACROS
- *********************************************************************************************************************/
-/* Memory-mapped peripheral registers */
-
-#define SYSCTL_RCGCWD         (*((volatile uint32_t *)0x400FE600))
-#define SYSCTL_RCGCTIMER      (*((volatile uint32_t *)0x400FE604))
-#define SYSCTL_RCGCGPIO       (*((volatile uint32_t *)0x400FE608))
-#define SYSCTL_RCGCDMA        (*((volatile uint32_t *)0x400FE60C))
-#define SYSCTL_RCGCHIB        (*((volatile uint32_t *)0x400FE614))
-#define SYSCTL_RCGCUART       (*((volatile uint32_t *)0x400FE618))
-#define SYSCTL_RCGCSSI        (*((volatile uint32_t *)0x400FE61C))
-#define SYSCTL_RCGCI2C        (*((volatile uint32_t *)0x400FE620))
-#define SYSCTL_RCGCUSB        (*((volatile uint32_t *)0x400FE628))
-#define SYSCTL_RCGCCAN        (*((volatile uint32_t *)0x400FE634))
-#define SYSCTL_RCGCADC        (*((volatile uint32_t *)0x400FE638))
-#define SYSCTL_RCGCACMP       (*((volatile uint32_t *)0x400FE63C))
-#define SYSCTL_RCGCPWM        (*((volatile uint32_t *)0x400FE640))
-#define SYSCTL_RCGCQEI        (*((volatile uint32_t *)0x400FE644))
-#define SYSCTL_RCGCEEPROM     (*((volatile uint32_t *)0x400FE658))
-#define SYSCTL_RCGCWTIMER     (*((volatile uint32_t *)0x400FE65C))
-
-#define SYSCTL_RCC_R            (*((volatile uint32_t *)0x400FE060))
-#define SYSCTL_RCC2_R           (*((volatile uint32_t *)0x400FE070))
-#define SYSCTL_RIS_R            (*((volatile uint32_t *)0x400FE050))
-
-
-/**********************************************************************************************************************
- *  GLOBAL DATA TYPES AND STRUCTURES
- *********************************************************************************************************************/
-typedef enum
-{
-	WATCHDOG,
-	TIMER,
-	GPIO,
-	DMA,               /* Direct Memory Access */
-	HIB,               /* Hibernation Run Mode */
-	UART,
-	SSI,               /* Synchronous Serial Interface == SPI */
-	I2C,
-	USB,
-	CAN,
-	ADC,
-	ACMP,              /* Analog Comparator Run Mode */
-	PWM,
-	QEI,               /* Quadrature Encoder Interface Run Mode */
-	EEPROM,
-	WTIMER             /* BitWide General-Purpose Timer Run */
-}Peripheral_Type;
-
-/**********************************************************************************************************************
- *  GLOBAL DATA PROTOTYPES
- *********************************************************************************************************************/
-
+#define CPU_F  16
 
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION PROTOTYPES
  *********************************************************************************************************************/
-uint8_t Enable_Peripheral_Clock (uint8_t U8Peripheral_Name , uint8_t U8Peripheral_Channel );
-uint8_t Clock_PLL_init (uint8_t U8Div_number);
+/******************************************************************************
+* \Syntax          : uint8_t Enable_Peripheral_Clock (uint8_t U8Peripheral_Name , uint8_t U8Peripheral_Channel )
+* \Description     : Peripheral Clock Gating Control
+*
+* \Sync\Async      : Synchronous
+* \Reentrancy      : Reentrant
+* \Parameters (in) : U8Peripheral_Name        >>>  Name of peripheral that i want to set clock enable
+*                    U8Peripheral_Channel     >>>  select peripheral channel
+* \Parameters (out): None
+* \Return value:   : Std_ReturnType  OK
+*                                    NOT_OK
+*******************************************************************************/
+Std_ReturnType Enable_Peripheral_Clock (uint8_t U8Peripheral_Name , uint8_t U8Peripheral_Channel );
 
+/******************************************************************************
+* \Syntax          : Std_ReturnType Clock_PLL_init (uint8_t U8Div_number);
+
+* \Description     :  PLL setting -- clock control
+*
+* \Sync\Async      : Synchronous
+* \Reentrancy      : Reentrant
+* \Parameters (in) : U8Div_number        >>> 400 MHZ PLL / U8Div_number to select clock value
+*
+* \Parameters (out): None
+* \Return value:   : Std_ReturnType  OK
+*                                    NOT_OK
+*******************************************************************************/
+Std_ReturnType Clock_PLL_init (uint8_t U8Div_number);
+
+/*********************************************************************************************************************/
 #endif /* CLOCK_SYSCTR_H_ */
 
 /**********************************************************************************************************************
- *  END OF FILE: Std_Types.h
+ *  END OF FILE: SysCtr.h
  *********************************************************************************************************************/

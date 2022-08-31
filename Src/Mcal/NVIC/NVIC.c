@@ -2,13 +2,17 @@
  *  FILE DESCRIPTION
  *  -----------------------------------------------------------------------------------------------------------------*/
 /**        \file  NVIC.h
- *        \brief
+ *        \brief  --- Enable peripheral interrupt
+ *                --- Disable peripheral interrupt
+ *                --- Set Priority of Peripheral interrupt
  *
  *      \details
  *
  *
- *********************************************************************************************************************/
-
+ *********************************************************************************************************************
+ *** NAME: Mohamed Hassaneen Ahmed
+ *** DATE: 15/8/2022
+**********************************************************************************************************************/
 /**********************************************************************************************************************
  *  INCLUDES
  *********************************************************************************************************************/
@@ -109,9 +113,9 @@ Std_ReturnType  NVIC_Disable_IRQ( uint8_t U8Peripheral_Name)
 }
 
 /******************************************************************************
-* \Syntax          : uint8_t  NVIC_Priority_IRQ( uint8_t *U8Ptr_NVIC_PRI_Reg,
+* \Syntax          : uint8_t  NVIC_Priority_IRQ( uint32_t *U8Ptr_NVIC_PRI_Reg,
 							                     uint8_t  U8Peripheral_Name,
-							                     uint8_t  U8Level_Priority
+							                      uint8_t  U8Level_Priority
 							                   );
 * \Description     : set priority of peripheral interrupt
 *
@@ -125,7 +129,7 @@ Std_ReturnType  NVIC_Disable_IRQ( uint8_t U8Peripheral_Name)
 *                                    E_NOT_OK
 *******************************************************************************/
 Std_ReturnType  NVIC_Priority_IRQ( uint32_t *NVIC_PRI_Reg_Addresses[],
-							       uint8_t  U8Peripheral_Name,
+								   uint8_t  U8Peripheral_Name,
 							       uint8_t  U8Level_Priority
 						         )
 {

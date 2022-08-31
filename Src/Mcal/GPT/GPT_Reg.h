@@ -1,14 +1,18 @@
 /**********************************************************************************************************************
  *  FILE DESCRIPTION
  *  -------------------------------------------------------------------------------------------------------------------
- *         File:  GPIO_Types.h
- *       Module:  GPIO
+ *         File:  GPT.h
+ *       Module:  GPT
  *
- *  Description:  GPIO Registers
- *                Using Bit Masking feature in Data register in ARM CORTEXM-4 to avoid
- *                Raed-Modify-write technique and all functions are reentrant.
+ *  Description:  ---  Header file includes all registers mapping of GPT driver
+ *                ---  has two types of mapping
+ *                    >> each register of each module
+ *                    >> base of timer0 module and offsets
  *
- **********************************************************************************************************/
+ *********************************************************************************************************************
+ *** NAME: Mohamed Hassaneen Ahmed
+ *** DATE: 24/8/2022
+**********************************************************************************************************************/
 #ifndef GPT_GPT_REG_H_
 #define GPT_GPT_REG_H_
 
@@ -17,6 +21,7 @@
 // Timer registers (TIMER0)
 //
 //*****************************************************************************
+
 #define TIMER0_CFG            (*((volatile uint32_t *)0x40030000))
 #define TIMER0_TAMR           (*((volatile uint32_t *)0x40030004))
 #define TIMER0_TBMR           (*((volatile uint32_t *)0x40030008))
@@ -407,6 +412,52 @@
 #define WTIMER5_TBPV          (*((volatile uint32_t *)0x4004F068))
 #define WTIMER5_PP            (*((volatile uint32_t *)0x4004FFC0))
 
+/************************************************************************************************/
+#define Base_TIMER_CFG            0x40030000
+#define Base_TIMER_TAMR           0x40030004
+#define Base_TIMER_TBMR           0x40030008
+#define Base_TIMER_CTL            0x4003000C
+#define Base_TIMER_SYNC           0x40030010
+#define Base_TIMER_IMR            0x40030018
+#define Base_TIMER_RIS            0x4003001C
+#define Base_TIMER_MIS            0x40030020
+#define Base_TIMER_ICR            0x40030024
+#define Base_TIMER_TAILR          0x40030028
+#define Base_TIMER_TBILR          0x4003002C
+#define Base_TIMER_TAMATCHR       0x40030030
+#define Base_TIMER_TBMATCHR       0x40030034
+#define Base_TIMER_TAPR           0x40030038
+#define Base_TIMER_TBPR           0x4003003C
+#define Base_TIMER_TAPMR          0x40030040
+#define Base_TIMER_TBPMR          0x40030044
+#define Base_TIMER_TAR            0x40030048
+#define Base_TIMER_TBR            0x4003004C
+#define Base_TIMER_TAV            0x40030050
+#define Base_TIMER_TBV            0x40030054
+#define Base_TIMER_RTCPD          0x40030058
+#define Base_TIMER_TAPS           0x4003005C
+#define Base_TIMER_TBPS           0x40030060
+#define Base_TIMER_TAPV           0x40030064
+#define Base_TIMER_TBPV           0x40030068
+#define Base_TIMER_PP             0x40030FC0
+
+
+#define TIMER0_OFFSET  0
+#define TIMER1_OFFSET  0x1000
+#define TIMER2_OFFSET  0x2000
+#define TIMER3_OFFSET  0x3000
+#define TIMER4_OFFSET  0x4000
+#define TIMER5_OFFSET  0x5000
+#define WTIMER0_OFFSET 0x6000
+#define WTIMER1_OFFSET 0x7000
+#define WTIMER2_OFFSET 0x1C000
+#define WTIMER3_OFFSET 0x1D000
+#define WTIMER4_OFFSET 0x1E000
+#define WTIMER5_OFFSET 0x1F000
 
 
 #endif /* GPT_GPT_REG_H_ */
+
+/**********************************************************************************************************************
+ *  END OF FILE: GPT_Reg.h
+ *********************************************************************************************************************/

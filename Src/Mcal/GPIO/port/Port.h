@@ -3,11 +3,16 @@
  *  FILE DESCRIPTION
  *  -------------------------------------------------------------------------------------------------------------------
  *         File: Port.h
- *       Module:  -
+ *       Module:  GPIO
  *
- *  Description:  <Write File DESCRIPTION here>
- *
- *********************************************************************************************************************/
+ *  Description:  static code for initiation GPIO
+ *                static APIs
+ *                --
+ ************************************************************************************************************************
+ *** NAME: Mohamed Hassaneen Ahmed
+ *** DATE: 22/8/2022
+ **********************************************************************************************************************/
+
 #ifndef GPIO_PORT_PORT_H_
 #define GPIO_PORT_PORT_H_
 
@@ -27,90 +32,177 @@
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION PROTOTYPES
  *********************************************************************************************************************/
-Std_ReturnType PIN_SetDirection            (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-									        GPIO_PinDirectionType Direction);
+/******************************************************************************
+* \Syntax          :  Std_ReturnType PIN_MaskInterrupt           ( GPIO_PortType Port_ID,
+												                       	GPIO_ChannelType Channel_ID,
+										                             	GPIO_InterruptMaskType int_mode)
 
-Std_ReturnType PIN_SetDigitalEnable        (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_PinDigitalEnableType DigEn);
+* \Description     : pin mask interrupt
+*
+* \Sync\Async      : Synchronous
+* \Reentrancy      : Reentrant
+* \Parameters (in) : Channel_ID        >>  pin number
+*                    Port_ID           >>  port number
+*                    int_mode          >>  pin mask interrupt
+* \Parameters (out): None
+* \Return value:   : Std_ReturnType        OK
+*                                          NOT_OK =-1
+*******************************************************************************/
+Std_ReturnType PIN_MaskInterrupt           ( GPIO_PortType Port_ID,
+													GPIO_ChannelType Channel_ID,
+										         	GPIO_InterruptMaskType int_mode);
+/******************************************************************************
+* \Syntax          : Std_ReturnType PIN_SenseInterrupt          (GPIO_PortType Port_ID,
+												                       GPIO_ChannelType Channel_ID,
+										                               GPIO_InterruptSenseType sense )
+* \Description     :set level or edge interrupt sense
+*
+* \Sync\Async      : Synchronous
+* \Reentrancy      : Reentrant
+* \Parameters (in) : Channel_ID        >>  pin number
+*                    Port_ID           >>  port number
+*                    sense             >>  set level or edge interrupt sense
+* \Parameters (out): None
+* \Return value:   : Std_ReturnType        OK
+*                                          NOT_OK =-1
+*******************************************************************************/
 
-Std_ReturnType PIN_SetPullUp               (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_PinPullUpType PullUp_state);
+Std_ReturnType PIN_SenseInterrupt          (GPIO_PortType Port_ID,
+												   GPIO_ChannelType Channel_ID,
+										           GPIO_InterruptSenseType sense );
+/******************************************************************************
+* \Syntax           Std_ReturnType PIN_BothInterrupt           ( GPIO_PortType Port_ID,
+													                   GPIO_ChannelType Channel_ID,
+										         	                   GPIO_InterruptBothType both_mode )
+* \Description     :set both edges or not
+*
+* \Sync\Async      : Synchronous
+* \Reentrancy      : Reentrant
+* \Parameters (in) : Channel_ID        >>  pin number
+*                    Port_ID           >>  port number
+*                    both_mode         >>  set both edges or not
+* \Parameters (out): None
+* \Return value:   : Std_ReturnType        OK
+*                                          NOT_OK =-1
+*******************************************************************************/
 
-Std_ReturnType PIN_SetPullDown             (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_PinPullDownType PullDown_state);
+Std_ReturnType PIN_BothInterrupt                 ( GPIO_PortType Port_ID,
+													GPIO_ChannelType Channel_ID,
+										         	GPIO_InterruptBothType both_mode );
+/******************************************************************************
+* \Syntax        Std_ReturnType PIN_EventInterrupt          ( GPIO_PortType Port_ID,
+										                  	  GPIO_ChannelType Channel_ID,
+										                      GPIO_InterruptEventType trigger_state )
+* \Description     :set trigger state raising-high or falling-low
+*
+* \Sync\Async      : Synchronous
+* \Reentrancy      : Reentrant
+* \Parameters (in) : Channel_ID        >>  pin number
+*                    Port_ID           >>  port number
+*                    trigger_state     >>  set trigger state raising-high or falling-low
+* \Parameters (out): None
+* \Return value:   : Std_ReturnType        OK
+*                                          NOT_OK =-1
+*******************************************************************************/
 
+Std_ReturnType PIN_EventInterrupt          ( GPIO_PortType Port_ID,
+											 GPIO_ChannelType Channel_ID,
+										     GPIO_InterruptEventType trigger_state );
 
-Std_ReturnType PIN_SetOpenDrain           (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_PinOpenDrainType OpenDrain_state);
+/******************************************************************************
+* \Syntax        Std_ReturnType PIN_MaskedStatusInterrupt          (GPIO_PortType     Port_ID,
+												                   GPIO_ChannelType  Channel_ID)
+* \Description     :Read masked status interrupt
+*
+* \Sync\Async      : Synchronous
+* \Reentrancy      : Reentrant
+* \Parameters (in) : Channel_ID        >>  pin number
+*                    Port_ID           >>  port number
+* \Parameters (out): None
+* \Return value:   : Std_ReturnType        OK
+*                                          NOT_OK =-1
+*******************************************************************************/
 
+Std_ReturnType PIN_MaskedStatusInterrupt          (GPIO_PortType     Port_ID,
+												    GPIO_ChannelType  Channel_ID);
+/******************************************************************************
+* \Syntax         Std_ReturnType PIN_RawStatusInterrupt      (GPIO_PortType Port_ID,
+										                  	 GPIO_ChannelType Channel_ID )
+* \Description     :Read masked status interrupt
+*
+* \Sync\Async      : Synchronous
+* \Reentrancy      : Reentrant
+* \Parameters (in) : Channel_ID        >>  pin number
+*                    Port_ID           >>  port number
+* \Parameters (out): None
+* \Return value:   : Std_ReturnType        OK
+*                                          NOT_OK =-1
+*******************************************************************************/
 
-Std_ReturnType PIN_SetSlewRate             (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_PinSlewRateType SlewRate_state);
+Std_ReturnType PIN_RawStatusInterrupt      (GPIO_PortType Port_ID,
+											 GPIO_ChannelType Channel_ID );
 
+/******************************************************************************
+* \Syntax        Std_ReturnType PIN_ClearInterrupt          ( GPIO_PortType    Port_ID,
+											                  GPIO_ChannelType Channel_ID )
+* \Description     :clear interrupt
+*
+* \Sync\Async      : Synchronous
+* \Reentrancy      : Reentrant
+* \Parameters (in) : Channel_ID        >>  pin number
+*                    Port_ID           >>  port number
+* \Parameters (out): None
+* \Return value:   : Std_ReturnType        OK
+*                                          NOT_OK =-1
+*******************************************************************************/
 
+Std_ReturnType PIN_ClearInterrupt          ( GPIO_PortType    Port_ID,
+											  GPIO_ChannelType Channel_ID );
 
-Std_ReturnType PIN_MaskInterrupt           (GPIO_ChannelType Channel_ID,
-								            GPIO_PortType Port_ID,
-											GPIO_InterruptMaskType int_mode);
-
-Std_ReturnType PIN_SenseInterrupt          (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_InterruptSenseType sense );
-
-Std_ReturnType PIN_BothInterrupt           (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_InterruptBothType both_mode );
-
-Std_ReturnType PIN_EventInterrupt          (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_InterruptEventType trigger_state );
-
-Std_ReturnType PIN_MaskedStatusInterrupt   (GPIO_ChannelType Channel_ID,
-								            GPIO_PortType Port_ID);
-
-Std_ReturnType PIN_RawStatusInterrupt      (GPIO_ChannelType Channel_ID,
-								            GPIO_PortType Port_ID);
-
-Std_ReturnType PIN_ClearInterrupt          (GPIO_ChannelType Channel_ID,
-								            GPIO_PortType Port_ID);
-
-Std_ReturnType PIN_Lock                     (GPIO_PortType Port_ID,
-											GPIO_LockType lock_state);
+/******************************************************************************
+* \Syntax           Std_ReturnType PIN_Lock                     (GPIO_PortType Port_ID,
+										                       GPIO_LockType lock_state);
+* \Description     :unlock protected pins
+*
+* \Sync\Async      : Synchronous
+* \Reentrancy      : Reentrant
+* \Parameters (in) : Channel_ID         >>  pin number
+*                    lock_state         >>  lock status
+* \Parameters (out): None
+* \Return value:   : Std_ReturnType        OK
+*                                          NOT_OK =-1
+*******************************************************************************/
+Std_ReturnType     PIN_Lock                     (GPIO_PortType Port_ID,
+											      GPIO_LockType lock_state);
+/******************************************************************************
+* \Syntax       Std_ReturnType PIN_Commit                   (GPIO_PortType Port_ID,
+											                 GPIO_ChannelType Channel_ID);
+* \Description     :PIN commit for unlocking
+*
+* \Sync\Async      : Synchronous
+* \Reentrancy      : Reentrant
+* \Parameters (in) : Channel_ID        >>  pin number
+*                    Port_ID           >>  port number
+* \Parameters (out): None
+* \Return value:   : Std_ReturnType        OK
+*                                          NOT_OK =-1
+*******************************************************************************/
 
 Std_ReturnType PIN_Commit                   (GPIO_PortType Port_ID,
 											 GPIO_ChannelType Channel_ID);
 
-Std_ReturnType PIN_PortControl             (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_PortControlType function );
+/******************************************************************************
+* \Syntax        Std_ReturnType  GPIO_Init (const GPIO_ConfigType *Port_ConfigPtr);
 
-Std_ReturnType PIN_ADCControl              (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_ADCControlType state );
-
-Std_ReturnType PIN_DMAControl              (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_DMAControlType state );
-
-Std_ReturnType PIN_AnalogMode              (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_AnalogType state );
-
-Std_ReturnType PIN_AlternativeFunction     (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_AlternativeFunctionType state );
-
-Std_ReturnType PIN_CurrentDrive            (GPIO_ChannelType Channel_ID,
-									        GPIO_PortType Port_ID,
-											GPIO_PinOutputCurrentType drive );
-
-/*****************************************************************************************************/
+* \Description     :init GPIO Pins
+*
+* \Sync\Async      : Synchronous
+* \Reentrancy      : Reentrant
+* \Parameters (in) : Port_ConfigPtr >> pointer to configuration array
+* \Parameters (out): None
+* \Return value:   : Std_ReturnType        OK
+*                                          NOT_OK =-1
+*******************************************************************************/
 Std_ReturnType  GPIO_Init (const GPIO_ConfigType *Port_ConfigPtr);
 
 

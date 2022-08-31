@@ -6,11 +6,22 @@
  *
  *  Description:  special types of NVIC module
  *
- *********************************************************************************************************************/
+ *********************************************************************************************************************
+ *** NAME: Mohamed Hassaneen Ahmed
+ *** DATE: 15/8/2022
+**********************************************************************************************************************/
+
 #ifndef NVIC_NVIC_TYPES_H_
 #define NVIC_NVIC_TYPES_H_
-
+/**********************************************************************************************************************
+ *  INCLUDES
+ *********************************************************************************************************************/
 #include "NVIC.h"
+
+/**********************************************************************************************************************
+ *  GLOBAL DATA TYPES AND STRUCTURES
+ *********************************************************************************************************************/
+
 typedef enum
 {
        NVIC_GPIOA=0,
@@ -69,22 +80,22 @@ typedef enum
        NVIC_UART7,
        NVIC_I2C2=68,
        NVIC_I2C3,
-       NVIC_Bit_Timer4A_16_32,
-       NVIC_Bit_Timer4B_16_32,
-       NVIC_Bit_Timer5A_16_32=92,
-       NVIC_Bit_Timer5B_16_32,
-       NVIC_Bit_Timer0A_32_64,
-       NVIC_Bit_Timer0B_32_64,
-       NVIC_Bit_Timer1A_32_64,
-       NVIC_Bit_Timer1B_32_64,
-       NVIC_Bit_Timer2A_32_64,
-       NVIC_Bit_Timer2B_32_64,
-       NVIC_Bit_Timer3A_32_64,
-       NVIC_Bit_Timer3B_32_64,
-       NVIC_Bit_Timer4A_32_64,
-       NVIC_Bit_Timer4B_32_64,
-       NVIC_Bit_Timer5A_32_64,
-       NVIC_Bit_Timer5B_32_64,
+       NVIC_Timer4A_16_32,
+       NVIC_Timer4B_16_32,
+       NVIC_Timer5A_16_32=92,
+       NVIC_Timer5B_16_32,
+       NVIC_Timer0A_32_64,
+       NVIC_Timer0B_32_64,
+       NVIC_Timer1A_32_64,
+       NVIC_Timer1B_32_64,
+       NVIC_Timer2A_32_64,
+       NVIC_Timer2B_32_64,
+       NVIC_Timer3A_32_64,
+       NVIC_Timer3B_32_64,
+       NVIC_Timer4A_32_64,
+       NVIC_Timer4B_32_64,
+       NVIC_Timer5A_32_64,
+       NVIC_Timer5B_32_64,
        NVIC_System_Exception,
        NVIC_PWM1_Generator0=134,
        NVIC_PWM1_Generator1,
@@ -93,7 +104,7 @@ typedef enum
        NVIC_PWM1_Fault
 }NVIC_IntType;
 
-
+/**********************************************************************************************************************/
 #endif  /* NVIC_NVIC_TYPES_H_*/
 
 /**********************************************************************************************************************

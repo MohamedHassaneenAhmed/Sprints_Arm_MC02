@@ -16,9 +16,12 @@
 /**********************************************************************************************************************
  * INCLUDES
  *********************************************************************************************************************/
-#include <Common/STD_Types.h>
+#include "STD_Types.h"
 
 
+//#define PERI_BASE 0x40000000
+//#define BITBAND_PERI_BASE 0x42000000
+//#define BITBAND_PERI(a,b) ((BITBAND_PERI_BASE + (a-PERI_BASE)*32 + (b*4)))
 //*****************************************************************************
 //
 // GPIO registers (PORTA)
@@ -28,14 +31,14 @@
 #define GPIOA_DATA_PORT  (*((volatile uint32_t *)0x400043FC))
 
                  /* DATA REG BIT MASKING */
-#define GPIOA_DATA_PN0   (*((volatile uint32_t *)0x40004004))
-#define GPIOA_DATA_PN1   (*((volatile uint32_t *)0x40004008))
-#define GPIOA_DATA_PN2   (*((volatile uint32_t *)0x40004010))
-#define GPIOA_DATA_PN3   (*((volatile uint32_t *)0x40004020))
-#define GPIOA_DATA_PN4   (*((volatile uint32_t *)0x40004040))
-#define GPIOA_DATA_PN5   (*((volatile uint32_t *)0x40004080))
-#define GPIOA_DATA_PN6   (*((volatile uint32_t *)0x40004100))
-#define GPIOA_DATA_PN7   (*((volatile uint32_t *)0x40004200))
+//#define GPIOA_DATA_PN0   (*((volatile uint32_t *)0x40004004))
+//#define GPIOA_DATA_PN1   (*((volatile uint32_t *)0x40004008))
+//#define GPIOA_DATA_PN2   (*((volatile uint32_t *)0x40004010))
+//#define GPIOA_DATA_PN3   (*((volatile uint32_t *)0x40004020))
+//#define GPIOA_DATA_PN4   (*((volatile uint32_t *)0x40004040))
+//#define GPIOA_DATA_PN5   (*((volatile uint32_t *)0x40004080))
+//#define GPIOA_DATA_PN6   (*((volatile uint32_t *)0x40004100))
+//#define GPIOA_DATA_PN7   (*((volatile uint32_t *)0x40004200))
 /*--------------------------------------------------------------*/
 #define GPIOA_DIR        (*((volatile uint32_t *)0x40004400))
 #define GPIOA_IS         (*((volatile uint32_t *)0x40004404))
@@ -69,14 +72,14 @@
 #define GPIOB_DATA_BITS  ((volatile uint32_t *)0x40005000)
 #define GPIOB_DATA_PORT  (*((volatile uint32_t *)0x400053FC))
                    /* DATA REG BIT MASKING */
-#define GPIOB_DATA_PN0   (*((volatile uint32_t *)0x40005004))
-#define GPIOB_DATA_PN1   (*((volatile uint32_t *)0x40005008))
-#define GPIOB_DATA_PN2   (*((volatile uint32_t *)0x40005010))
-#define GPIOB_DATA_PN3   (*((volatile uint32_t *)0x40005020))
-#define GPIOB_DATA_PN4   (*((volatile uint32_t *)0x40005040))
-#define GPIOB_DATA_PN5   (*((volatile uint32_t *)0x40005080))
-#define GPIOB_DATA_PN6   (*((volatile uint32_t *)0x40005100))
-#define GPIOB_DATA_PN7   (*((volatile uint32_t *)0x40005200))
+//#define GPIOB_DATA_PN0   (*((volatile uint32_t *)0x40005004))
+//#define GPIOB_DATA_PN1   (*((volatile uint32_t *)0x40005008))
+//#define GPIOB_DATA_PN2   (*((volatile uint32_t *)0x40005010))
+//#define GPIOB_DATA_PN3   (*((volatile uint32_t *)0x40005020))
+//#define GPIOB_DATA_PN4   (*((volatile uint32_t *)0x40005040))
+//#define GPIOB_DATA_PN5   (*((volatile uint32_t *)0x40005080))
+//#define GPIOB_DATA_PN6   (*((volatile uint32_t *)0x40005100))
+//#define GPIOB_DATA_PN7   (*((volatile uint32_t *)0x40005200))
 /*--------------------------------------------------------------*/
 #define GPIOB_DIR        (*((volatile uint32_t *)0x40005400))
 #define GPIOB_IS         (*((volatile uint32_t *)0x40005404))
@@ -110,14 +113,14 @@
 #define GPIOC_DATA_BITS  ((volatile uint32_t *)0x40006000)
 #define GPIOC_DATA_PORT  (*((volatile uint32_t *)0x400063FC))
                    /* DATA REG BIT MASKING */
-#define GPIOC_DATA_PN0   (*((volatile uint32_t *)0x40006004))
-#define GPIOC_DATA_PN1   (*((volatile uint32_t *)0x40006008))
-#define GPIOC_DATA_PN2   (*((volatile uint32_t *)0x40006010))
-#define GPIOC_DATA_PN3   (*((volatile uint32_t *)0x40006020))
-#define GPIOC_DATA_PN4   (*((volatile uint32_t *)0x40006040))
-#define GPIOC_DATA_PN5   (*((volatile uint32_t *)0x40006080))
-#define GPIOC_DATA_PN6   (*((volatile uint32_t *)0x40006100))
-#define GPIOC_DATA_PN7   (*((volatile uint32_t *)0x40006200))
+//#define GPIOC_DATA_PN0   (*((volatile uint32_t *)0x40006004))
+//#define GPIOC_DATA_PN1   (*((volatile uint32_t *)0x40006008))
+//#define GPIOC_DATA_PN2   (*((volatile uint32_t *)0x40006010))
+//#define GPIOC_DATA_PN3   (*((volatile uint32_t *)0x40006020))
+//#define GPIOC_DATA_PN4   (*((volatile uint32_t *)0x40006040))
+//#define GPIOC_DATA_PN5   (*((volatile uint32_t *)0x40006080))
+//#define GPIOC_DATA_PN6   (*((volatile uint32_t *)0x40006100))
+//#define GPIOC_DATA_PN7   (*((volatile uint32_t *)0x40006200))
 /*--------------------------------------------------------------*/
 #define GPIOC_DIR        (*((volatile uint32_t *)0x40006400))
 #define GPIOC_IS         (*((volatile uint32_t *)0x40006404))
@@ -151,14 +154,14 @@
 #define GPIOD_DATA_BITS  ((volatile uint32_t *)0x40007000)
 #define GPIOD_DATA_PORT  (*((volatile uint32_t *)0x400073FC))
                 /* DATA REG BIT MASKING */
-#define GPIOD_DATA_PN0   (*((volatile uint32_t *)0x40007004))
-#define GPIOD_DATA_PN1   (*((volatile uint32_t *)0x40007008))
-#define GPIOD_DATA_PN2   (*((volatile uint32_t *)0x40007010))
-#define GPIOD_DATA_PN3   (*((volatile uint32_t *)0x40007020))
-#define GPIOD_DATA_PN4   (*((volatile uint32_t *)0x40007040))
-#define GPIOD_DATA_PN5   (*((volatile uint32_t *)0x40007080))
-#define GPIOD_DATA_PN6   (*((volatile uint32_t *)0x40007100))
-#define GPIOD_DATA_PN7   (*((volatile uint32_t *)0x40007200))
+//#define GPIOD_DATA_PN0   (*((volatile uint32_t *)0x40007004))
+//#define GPIOD_DATA_PN1   (*((volatile uint32_t *)0x40007008))
+//#define GPIOD_DATA_PN2   (*((volatile uint32_t *)0x40007010))
+//#define GPIOD_DATA_PN3   (*((volatile uint32_t *)0x40007020))
+//#define GPIOD_DATA_PN4   (*((volatile uint32_t *)0x40007040))
+//#define GPIOD_DATA_PN5   (*((volatile uint32_t *)0x40007080))
+//#define GPIOD_DATA_PN6   (*((volatile uint32_t *)0x40007100))
+//#define GPIOD_DATA_PN7   (*((volatile uint32_t *)0x40007200))
 /*--------------------------------------------------------------*/
 #define GPIOD_DIR        (*((volatile uint32_t *)0x40007400))
 #define GPIOD_IS         (*((volatile uint32_t *)0x40007404))
@@ -192,12 +195,12 @@
 #define GPIOE_DATA_BITS  ((volatile uint32_t *)0x40024000)
 #define GPIOE_DATA_PORT  (*((volatile uint32_t *)0x400243FC))
                   /* DATA REG BIT MASKING */
-#define GPIOE_DATA_PN0   (*((volatile uint32_t *)0x40024004))
-#define GPIOE_DATA_PN1   (*((volatile uint32_t *)0x40024008))
-#define GPIOE_DATA_PN2   (*((volatile uint32_t *)0x40024010))
-#define GPIOE_DATA_PN3   (*((volatile uint32_t *)0x40024020))
-#define GPIOE_DATA_PN4   (*((volatile uint32_t *)0x40024040))
-#define GPIOE_DATA_PN5   (*((volatile uint32_t *)0x40024080))
+//#define GPIOE_DATA_PN0   (*((volatile uint32_t *)0x40024004))
+//#define GPIOE_DATA_PN1   (*((volatile uint32_t *)0x40024008))
+//#define GPIOE_DATA_PN2   (*((volatile uint32_t *)0x40024010))
+//#define GPIOE_DATA_PN3   (*((volatile uint32_t *)0x40024020))
+//#define GPIOE_DATA_PN4   (*((volatile uint32_t *)0x40024040))
+//#define GPIOE_DATA_PN5   (*((volatile uint32_t *)0x40024080))
 /*--------------------------------------------------------------*/
 #define GPIOE_DIR        (*((volatile uint32_t *)0x40024400))
 #define GPIOE_IS         (*((volatile uint32_t *)0x40024404))
@@ -231,11 +234,11 @@
 #define GPIOF_DATA_BITS  ((volatile uint32_t *)0x40025000)
 #define GPIOF_DATA_PORT  (*((volatile uint32_t *)0x400253FC))
                   /* DATA REG BIT MASKING */
-#define GPIOF_DATA_PN0   (*((volatile uint32_t *)0x40025004))
-#define GPIOF_DATA_PN1   (*((volatile uint32_t *)0x40025008))
-#define GPIOF_DATA_PN2   (*((volatile uint32_t *)0x40025010))
-#define GPIOF_DATA_PN3   (*((volatile uint32_t *)0x40025020))
-#define GPIOF_DATA_PN4   (*((volatile uint32_t *)0x40025040))
+//#define GPIOF_DATA_PN0   (*((volatile uint32_t *)0x40025004))
+//#define GPIOF_DATA_PN1   (*((volatile uint32_t *)0x40025008))
+//#define GPIOF_DATA_PN2   (*((volatile uint32_t *)0x40025010))
+//#define GPIOF_DATA_PN3   (*((volatile uint32_t *)0x40025020))
+//#define GPIOF_DATA_PN4   (*((volatile uint32_t *)0x40025040))
 /*--------------------------------------------------------------*/
 #define GPIOF_DIR        (*((volatile uint32_t *)0x40025400))
 #define GPIOF_IS         (*((volatile uint32_t *)0x40025404))
@@ -261,7 +264,7 @@
 #define GPIOF_ADCCTL     (*((volatile uint32_t *)0x40025530))
 #define GPIOF_DMACTL     (*((volatile uint32_t *)0x40025534))
 
-
+//#define PF1                    (*((volatile uint32_t *)BITBAND_PERI(0x40025000,1)))
 
 /****************************************************************************************************/
 

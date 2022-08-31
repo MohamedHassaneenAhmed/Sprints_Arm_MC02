@@ -5,11 +5,12 @@
  *         File:  GPIO_Types.h
  *       Module:  GPIO
  *
- *  Description:  GPIO Registers
- *                Using Bit Masking feature in Data register in ARM CORTEXM-4 to avoid
- *                Raed-Modify-write technique and all functions are reentrant.
+ *  Description:  GPIO Types file includes all types i need of GPIO driver
  *
- **********************************************************************************************************/
+*********************************************************************************************************************
+ *** NAME: Mohamed Hassaneen Ahmed
+ *** DATE: 20/8/2022
+ **********************************************************************************************************************/
 #ifndef GPIO_GPIO_TYPES_H_
 #define GPIO_GPIO_TYPES_H_
 
@@ -54,6 +55,7 @@ typedef enum
 {
 	INPUT,
 	OUTPUT,
+	NON_CONFIGUERED_DIRECTION
 } GPIO_PinDirectionType;
 
 /*******************************/
@@ -69,7 +71,8 @@ typedef enum
 	PULL_UP_ATTACH = 0,
 	PULL_DOWN_ATTACH,
 	OPEN_DRAIN_ATTACH,
-	SLEW_RATE__ATTACH
+	SLEW_RATE__ATTACH,
+	NON_CONFIGUERED_ATTACH
 } GPIO_PinIntrnalAttachType;
 /*******************************/
 typedef enum
@@ -84,6 +87,14 @@ typedef enum
 	CURRENT_4MA,
 	CURRENT_8MA
 } GPIO_PinOutputCurrentType;
+/*******************************/
+
+typedef enum
+{
+	RESET_DIGITAL_ENABLE=0,
+	SET_DIGITAL_ENABLE
+} GPIO_PinDigitalEnableType;
+
 
 /*************************************************************************
  * Description : structure for configuration
@@ -125,6 +136,9 @@ typedef enum
  *                     >> CURRENT_2MA = 0,
 	                   >> CURRENT_4MA,
 	                   >> CURRENT_8MA
+	              9- DIGITAL ENABLE
+	                   >> RESET_DIGITAL_ENABLE
+	                   >> SET_DIGITAL_ENABLE
  **************************************************************************/
 typedef struct
 {
@@ -136,17 +150,13 @@ typedef struct
 	GPIO_PinIntrnalAttachType    PinIntrnalAttach;
 	GPIO_PinLevelType            PinLevel;
 	GPIO_PinOutputCurrentType    PinOutputCurrent;
+	GPIO_PinDigitalEnableType    PinDigitalStatus;
 }GPIO_ConfigType;
 
 typedef uint8_t GPIO_LevelChannelType;
 typedef uint8_t GPIO_LevelPortType;
 
 /**********************************************************************************************/
-typedef enum
-{
-	RESET_DIGITAL_ENABLE=0,
-	SET_DIGITAL_ENABLE
-} GPIO_PinDigitalEnableType;
 
 /*********************** INTERNAL ATTACH TYPES *********************************/
 typedef enum

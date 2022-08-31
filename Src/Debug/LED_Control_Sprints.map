@@ -1,0 +1,355 @@
+******************************************************************************
+                  TI ARM Linker PC v20.2.5                     
+******************************************************************************
+>> Linked Wed Aug 31 12:44:51 2022
+
+OUTPUT FILE NAME:   <LED_Control_Sprints.out>
+ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 00003631
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  FLASH                 00000000   00040000  000037fa  0003c806  R  X
+  SRAM                  20000000   00008000  00000638  000079c8  RW X
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00000000    00000000    000037fc   000037fc    r-x
+  00000000    00000000    0000026c   0000026c    r-- .intvecs
+  0000026c    0000026c    0000342a   0000342a    r-x .text
+  00003698    00003698    00000164   00000164    r-- .cinit
+20000000    20000000    00000638   00000000    rw-
+  20000000    20000000    00000438   00000000    rw- .data
+  20000438    20000438    00000200   00000000    rw- .stack
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.intvecs   0    00000000    0000026c     
+                  00000000    0000026c     tm4c123gh6pm_startup_ccs.obj (.intvecs)
+
+.text      0    0000026c    0000342a     
+                  0000026c    00001dda     Port.obj (.text)
+                  00002046    00000002     rtsv7M4_T_le_v4SPD16_eabi.lib : div0.asm.obj (.text)
+                  00002048    000008d0     GPT.obj (.text)
+                  00002918    00000388     DIO.obj (.text)
+                  00002ca0    00000368     NVIC.obj (.text)
+                  00003008    00000328     SysCtr.obj (.text)
+                  00003330    0000009c     rtsv7M4_T_le_v4SPD16_eabi.lib : memcpy_t2.asm.obj (.text)
+                  000033cc    00000098     scheduler.obj (.text)
+                  00003464    00000096     rtsv7M4_T_le_v4SPD16_eabi.lib : ull_div_t2.asm.obj (.text)
+                  000034fa    00000002     --HOLE-- [fill = 0]
+                  000034fc    00000088     LED.obj (.text)
+                  00003584    00000068     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  000035ec    00000044                                   : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit:__TI_auto_init_nobinit_nopinit)
+                  00003630    00000034                                   : boot_cortex_m.c.obj (.text:_c_int00_noargs:_c_int00_noargs)
+                  00003664    00000010     app.obj (.text)
+                  00003674    0000000e     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  00003682    0000000c     tm4c123gh6pm_startup_ccs.obj (.text)
+                  0000368e    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
+                  00003692    00000004                                   : exit.c.obj (.text:abort:abort)
+
+.cinit     0    00003698    00000164     
+                  00003698    00000151     (.cinit..data.load) [load image, compression = lzss]
+                  000037e9    00000003     --HOLE-- [fill = 0]
+                  000037ec    00000008     (__TI_handler_table)
+                  000037f4    00000008     (__TI_cinit_table)
+
+.init_array 
+*          0    00000000    00000000     UNINITIALIZED
+
+.data      0    20000000    00000438     UNINITIALIZED
+                  20000000    00000183     Port_Lcfg.obj (.data:PORT_ConfigType)
+                  20000183    00000001     LED.obj (.data)
+                  20000184    00000004     --HOLE--
+                  20000188    00000180     GPT_Lcfg.obj (.data:GPT_LinkConfig)
+                  20000308    00000120     GPT.obj (.data:Timer_Info_List)
+                  20000428    00000008     scheduler.obj (.data)
+                  20000430    00000008     scheduler.obj (.data:task_array)
+
+.stack     0    20000438    00000200     UNINITIALIZED
+                  20000438    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.stack)
+                  2000043c    000001fc     --HOLE--
+
+__llvm_prf_cnts 
+*          0    20000000    00000000     UNINITIALIZED
+
+MODULE SUMMARY
+
+       Module                         code    ro data   rw data
+       ------                         ----    -------   -------
+    .\
+       tm4c123gh6pm_startup_ccs.obj   12      620       0      
+    +--+------------------------------+-------+---------+---------+
+       Total:                         12      620       0      
+                                                               
+    .\APP\
+       app.obj                        16      0         0      
+    +--+------------------------------+-------+---------+---------+
+       Total:                         16      0         0      
+                                                               
+    .\HAL\
+       LED.obj                        136     0         1      
+    +--+------------------------------+-------+---------+---------+
+       Total:                         136     0         1      
+                                                               
+    .\MCAL\GPIO\dio\
+       DIO.obj                        904     0         0      
+    +--+------------------------------+-------+---------+---------+
+       Total:                         904     0         0      
+                                                               
+    .\MCAL\GPIO\port\
+       Port.obj                       7642    0         0      
+       Port_Lcfg.obj                  0       0         387    
+    +--+------------------------------+-------+---------+---------+
+       Total:                         7642    0         387    
+                                                               
+    .\MCAL\GPT\
+       GPT.obj                        2256    0         288    
+       GPT_Lcfg.obj                   0       0         384    
+    +--+------------------------------+-------+---------+---------+
+       Total:                         2256    0         672    
+                                                               
+    .\MCAL\NVIC\
+       NVIC.obj                       872     0         0      
+    +--+------------------------------+-------+---------+---------+
+       Total:                         872     0         0      
+                                                               
+    .\MCAL\clock\
+       SysCtr.obj                     808     0         0      
+    +--+------------------------------+-------+---------+---------+
+       Total:                         808     0         0      
+                                                               
+    .\services\
+       scheduler.obj                  152     0         16     
+    +--+------------------------------+-------+---------+---------+
+       Total:                         152     0         16     
+                                                               
+    D:\embeeeeeeeeeeeeded\ccs\tools\compiler\ti-cgt-arm_20.2.5.LTS\lib\rtsv7M4_T_le_v4SPD16_eabi.lib
+       memcpy_t2.asm.obj              156     0         0      
+       ull_div_t2.asm.obj             150     0         0      
+       copy_decompress_lzss.c.obj     104     0         0      
+       autoinit.c.obj                 68      0         0      
+       boot_cortex_m.c.obj            52      0         0      
+       copy_decompress_none.c.obj     14      0         0      
+       exit.c.obj                     4       0         0      
+       pre_init.c.obj                 4       0         0      
+       div0.asm.obj                   2       0         0      
+    +--+------------------------------+-------+---------+---------+
+       Total:                         554     0         0      
+                                                               
+       Stack:                         0       0         512    
+       Linker Generated:              0       353       0      
+    +--+------------------------------+-------+---------+---------+
+       Grand Total:                   13352   973       1588   
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 000037f4 records: 1, size/record: 8, table size: 8
+	.data: load addr=00003698, load size=00000151 bytes, run addr=20000000, run size=00000438 bytes, compression=lzss
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 000037ec records: 2, size/record: 4, table size: 8
+	index: 0, handler: __TI_decompress_lzss
+	index: 1, handler: __TI_decompress_none
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                          
+-------   ----                          
+00003693  C$$EXIT                       
+0000325f  Clock_PLL_Setting             
+00002b25  DIO_FlipChannel               
+00002919  DIO_ReadChannel               
+00002bc1  DIO_ReadPort                  
+000029c3  DIO_WriteChannel              
+00002c1d  DIO_WritePort                 
+00003009  Enable_Peripheral_Clock       
+00001d09  GPIO_Init                     
+000022c7  GPT_DisableNotification       
+00002293  GPT_EnableNotification        
+0000260d  GPT_GetPredefTimerValue       
+00002301  GPT_GetTimeElapsed            
+0000245d  GPT_GetTimeRemaining          
+00002049  GPT_Init                      
+20000188  GPT_LinkConfig                
+0000220b  GPT_StartTimer                
+0000226d  GPT_StopTimer                 
+0000280b  GPT_TimerA0_Handler           
+0000281b  GPT_TimerA1_Handler           
+0000282b  GPT_TimerA2_Handler           
+0000283b  GPT_TimerA3_Handler           
+0000284b  GPT_TimerA4_Handler           
+0000285b  GPT_TimerA5_Handler           
+0000286b  GPT_WTimerA0_Handler          
+0000287b  GPT_WTimerA1_Handler          
+0000288b  GPT_WTimerA2_Handler          
+000028a1  GPT_WTimerA3_Handler          
+000028b1  GPT_WTimerA4_Handler          
+000028c1  GPT_WTimerA5_Handler          
+0000353b  LED_Blinkin_Task              
+0000352d  LED_Init                      
+00002ddb  NVIC_Disable_IRQ              
+00002ca1  NVIC_Enable_IRQ               
+00002f15  NVIC_Priority_IRQ             
+00000f75  PIN_BothInterrupt             
+00001465  PIN_ClearInterrupt            
+00001635  PIN_Commit                    
+00001119  PIN_EventInterrupt            
+0000154d  PIN_Lock                      
+00000c2d  PIN_MaskInterrupt             
+000012b1  PIN_MaskedStatusInterrupt     
+00001389  PIN_RawStatusInterrupt        
+00000dd1  PIN_SenseInterrupt            
+20000000  PORT_ConfigType               
+00003683  ResetISR                      
+000033cd  System_Tick_Init              
+000033e1  System_Tick_handler           
+20000308  Timer_Info_List               
+20000638  __STACK_END                   
+00000200  __STACK_SIZE                  
+20000638  __STACK_TOP                   
+000037f4  __TI_CINIT_Base               
+000037fc  __TI_CINIT_Limit              
+000037ec  __TI_Handler_Table_Base       
+000037f4  __TI_Handler_Table_Limit      
+000035ed  __TI_auto_init_nobinit_nopinit
+00003585  __TI_decompress_lzss          
+00003675  __TI_decompress_none          
+ffffffff  __TI_pprof_out_hndl           
+ffffffff  __TI_prof_data_size           
+ffffffff  __TI_prof_data_start          
+00000000  __TI_static_base__            
+00002047  __aeabi_idiv0                 
+00002047  __aeabi_ldiv0                 
+00003331  __aeabi_memcpy                
+00003331  __aeabi_memcpy4               
+00003331  __aeabi_memcpy8               
+00003465  __aeabi_uldivmod              
+ffffffff  __binit__                     
+ffffffff  __c_args__                    
+UNDEFED   __mpu_init                    
+20000438  __stack                       
+20000000  __start___llvm_prf_cnts       
+20000000  __stop___llvm_prf_cnts        
+00003631  _c_int00_noargs               
+UNDEFED   _system_post_cinit            
+0000368f  _system_pre_init              
+00003693  abort                         
+ffffffff  binit                         
+20000183  counts                        
+00000000  g_pfnVectors                  
+00003665  main                          
+00003331  memcpy                        
+000033f7  start_os                      
+2000042c  sys_tick                      
+20000428  sys_tick_flag                 
+20000430  task_array                    
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                          
+-------   ----                          
+00000000  __TI_static_base__            
+00000000  g_pfnVectors                  
+00000200  __STACK_SIZE                  
+00000c2d  PIN_MaskInterrupt             
+00000dd1  PIN_SenseInterrupt            
+00000f75  PIN_BothInterrupt             
+00001119  PIN_EventInterrupt            
+000012b1  PIN_MaskedStatusInterrupt     
+00001389  PIN_RawStatusInterrupt        
+00001465  PIN_ClearInterrupt            
+0000154d  PIN_Lock                      
+00001635  PIN_Commit                    
+00001d09  GPIO_Init                     
+00002047  __aeabi_idiv0                 
+00002047  __aeabi_ldiv0                 
+00002049  GPT_Init                      
+0000220b  GPT_StartTimer                
+0000226d  GPT_StopTimer                 
+00002293  GPT_EnableNotification        
+000022c7  GPT_DisableNotification       
+00002301  GPT_GetTimeElapsed            
+0000245d  GPT_GetTimeRemaining          
+0000260d  GPT_GetPredefTimerValue       
+0000280b  GPT_TimerA0_Handler           
+0000281b  GPT_TimerA1_Handler           
+0000282b  GPT_TimerA2_Handler           
+0000283b  GPT_TimerA3_Handler           
+0000284b  GPT_TimerA4_Handler           
+0000285b  GPT_TimerA5_Handler           
+0000286b  GPT_WTimerA0_Handler          
+0000287b  GPT_WTimerA1_Handler          
+0000288b  GPT_WTimerA2_Handler          
+000028a1  GPT_WTimerA3_Handler          
+000028b1  GPT_WTimerA4_Handler          
+000028c1  GPT_WTimerA5_Handler          
+00002919  DIO_ReadChannel               
+000029c3  DIO_WriteChannel              
+00002b25  DIO_FlipChannel               
+00002bc1  DIO_ReadPort                  
+00002c1d  DIO_WritePort                 
+00002ca1  NVIC_Enable_IRQ               
+00002ddb  NVIC_Disable_IRQ              
+00002f15  NVIC_Priority_IRQ             
+00003009  Enable_Peripheral_Clock       
+0000325f  Clock_PLL_Setting             
+00003331  __aeabi_memcpy                
+00003331  __aeabi_memcpy4               
+00003331  __aeabi_memcpy8               
+00003331  memcpy                        
+000033cd  System_Tick_Init              
+000033e1  System_Tick_handler           
+000033f7  start_os                      
+00003465  __aeabi_uldivmod              
+0000352d  LED_Init                      
+0000353b  LED_Blinkin_Task              
+00003585  __TI_decompress_lzss          
+000035ed  __TI_auto_init_nobinit_nopinit
+00003631  _c_int00_noargs               
+00003665  main                          
+00003675  __TI_decompress_none          
+00003683  ResetISR                      
+0000368f  _system_pre_init              
+00003693  C$$EXIT                       
+00003693  abort                         
+000037ec  __TI_Handler_Table_Base       
+000037f4  __TI_CINIT_Base               
+000037f4  __TI_Handler_Table_Limit      
+000037fc  __TI_CINIT_Limit              
+20000000  PORT_ConfigType               
+20000000  __start___llvm_prf_cnts       
+20000000  __stop___llvm_prf_cnts        
+20000183  counts                        
+20000188  GPT_LinkConfig                
+20000308  Timer_Info_List               
+20000428  sys_tick_flag                 
+2000042c  sys_tick                      
+20000430  task_array                    
+20000438  __stack                       
+20000638  __STACK_END                   
+20000638  __STACK_TOP                   
+ffffffff  __TI_pprof_out_hndl           
+ffffffff  __TI_prof_data_size           
+ffffffff  __TI_prof_data_start          
+ffffffff  __binit__                     
+ffffffff  __c_args__                    
+ffffffff  binit                         
+UNDEFED   __mpu_init                    
+UNDEFED   _system_post_cinit            
+
+[88 symbols]
