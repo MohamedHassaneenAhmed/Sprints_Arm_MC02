@@ -18,10 +18,33 @@
  *********************************************************************************************************************/
 #include "STD_Types.h"
 
+/*********************************************************************************************************************
+ * BIT BANDING MACROS
+ * *******************************************************************************************************************/
+/*Define base address of peripheral bit-band*/
 
-//#define PERI_BASE 0x40000000
-//#define BITBAND_PERI_BASE 0x42000000
-//#define BITBAND_PERI(a,b) ((BITBAND_PERI_BASE + (a-PERI_BASE)*32 + (b*4)))
+#define BITBAND_PERI_BASE 0x40000000
+
+/*  Define base address of peripheral alias band */
+#define ALIAS_PERI_BASE 0x42000000
+
+/*   Convert PERI address to alias region */
+#define BITBAND_PERI(reg_address, bit_number) ((ALIAS_PERI_BASE + \
+                (reg_address - BITBAND_PERI_BASE) * 32 + (bit_number * 4)))
+
+/*********************************************************************************************************************
+ * DATA PORT BASE REGISTERS
+ * *******************************************************************************************************************/
+#define GPIOA_DATA  0x400043FC
+#define GPIOB_DATA  0x400053FC
+#define GPIOC_DATA  0x400063FC
+#define GPIOD_DATA  0x400073FC
+#define GPIOE_DATA  0x400243FC
+#define GPIOF_DATA  0x400253FC
+
+
+
+
 //*****************************************************************************
 //
 // GPIO registers (PORTA)

@@ -177,6 +177,31 @@
 GPIO_LevelChannelType DIO_ReadChannel (GPIO_PortType Port_ID,
 									   GPIO_ChannelType Channel_ID)
 {
+#if (BIT_BANDING == 1 )
+	uint8_t read_value;
+		switch (Port_ID)
+		{
+		case PORTA:
+			read_value = *((volatile uint32_t *)(BITBAND_PERI(GPIOA_DATA, Channel_ID)));
+			break;
+		case PORTB:
+			read_value = *((volatile uint32_t *)(BITBAND_PERI(GPIOB_DATA, Channel_ID)));
+			break;
+		case PORTC:
+			read_value = *((volatile uint32_t *)(BITBAND_PERI(GPIOC_DATA, Channel_ID)));
+			break;
+		case PORTD:
+			read_value = *((volatile uint32_t *)(BITBAND_PERI(GPIOD_DATA, Channel_ID)));
+			break;
+		case PORTE:
+			read_value = *((volatile uint32_t *)(BITBAND_PERI(GPIOE_DATA, Channel_ID)));
+			break;
+		case PORTF:
+			read_value = *((volatile uint32_t *)(BITBAND_PERI(GPIOF_DATA, Channel_ID)));
+			break;
+		}
+		return read_value;
+#else
 	uint8_t read_value;
 	switch (Port_ID)
 	{
@@ -200,8 +225,9 @@ GPIO_LevelChannelType DIO_ReadChannel (GPIO_PortType Port_ID,
 		break;
 	}
 	return read_value;
-
+#endif
 }
+
 
 ///******************************************************************************
 //* \Syntax          :Std_ReturnType DIO_WriteChannel (GPIO_ChannelType Channel_ID,
@@ -380,6 +406,29 @@ Std_ReturnType DIO_WriteChannel (GPIO_PortType Port_ID,
 								 GPIO_ChannelType Channel_ID,
 								 GPIO_LevelChannelType Level_Value)
 {
+#if (BIT_BANDING == 1 )
+		switch (Port_ID)
+		{
+		case PORTA:
+			 *((volatile uint32_t *)(BITBAND_PERI(GPIOA_DATA, Channel_ID)))=Level_Value ;
+			break;
+		case PORTB:
+			 *((volatile uint32_t *)(BITBAND_PERI(GPIOB_DATA, Channel_ID)))=Level_Value ;
+			break;
+		case PORTC:
+			 *((volatile uint32_t *)(BITBAND_PERI(GPIOC_DATA, Channel_ID)))=Level_Value ;
+			break;
+		case PORTD:
+			 *((volatile uint32_t *)(BITBAND_PERI(GPIOD_DATA, Channel_ID)))=Level_Value ;
+			break;
+		case PORTE:
+			 *((volatile uint32_t *)(BITBAND_PERI(GPIOE_DATA, Channel_ID)))=Level_Value ;
+			break;
+		case PORTF:
+			 *((volatile uint32_t *)(BITBAND_PERI(GPIOF_DATA, Channel_ID)))= Level_Value ;
+			break;
+		}
+#else
 	switch (Port_ID)
 	{
 	case PORTA:
@@ -449,7 +498,7 @@ Std_ReturnType DIO_WriteChannel (GPIO_PortType Port_ID,
 		}
 		break;
 	}
-
+#endif
 }
 
 
@@ -615,30 +664,56 @@ Std_ReturnType DIO_WriteChannel (GPIO_PortType Port_ID,
 	*                                        NOT_OK
 	*
 	*******************************************************************************/
-	void DIO_FlipChannel (GPIO_PortType Port_ID,GPIO_ChannelType Channel_ID)
-	{
+void DIO_FlipChannel(GPIO_PortType Port_ID, GPIO_ChannelType Channel_ID)
+{
+#if (BIT_BANDING == 1 )
 		switch (Port_ID)
 		{
 		case PORTA:
-			Toggle_Pin(GPIOA_DATA_PORT,Channel_ID);
+			 *((volatile uint32_t *)(BITBAND_PERI(GPIOA_DATA, Channel_ID))) ^= 1 ;
 			break;
 		case PORTB:
-			Toggle_Pin(GPIOB_DATA_PORT,Channel_ID);
+			 *((volatile uint32_t *)(BITBAND_PERI(GPIOB_DATA, Channel_ID))) ^= 1 ;
 			break;
 		case PORTC:
-			Toggle_Pin(GPIOC_DATA_PORT,Channel_ID);
+			 *((volatile uint32_t *)(BITBAND_PERI(GPIOC_DATA, Channel_ID))) ^= 1 ;
 			break;
 		case PORTD:
-			Toggle_Pin(GPIOD_DATA_PORT,Channel_ID);
+			 *((volatile uint32_t *)(BITBAND_PERI(GPIOD_DATA, Channel_ID))) ^= 1 ;
 			break;
 		case PORTE:
-			Toggle_Pin(GPIOE_DATA_PORT,Channel_ID);
+			 *((volatile uint32_t *)(BITBAND_PERI(GPIOE_DATA, Channel_ID))) ^= 1 ;
 			break;
 		case PORTF:
-			Toggle_Pin(GPIOF_DATA_PORT,Channel_ID);
+			 *((volatile uint32_t *)(BITBAND_PERI(GPIOF_DATA, Channel_ID))) ^= 1 ;
 			break;
 		}
+#else
+
+
+	switch (Port_ID)
+	{
+	case PORTA:
+		Toggle_Pin(GPIOA_DATA_PORT, Channel_ID);
+		break;
+	case PORTB:
+		Toggle_Pin(GPIOB_DATA_PORT, Channel_ID);
+		break;
+	case PORTC:
+		Toggle_Pin(GPIOC_DATA_PORT, Channel_ID);
+		break;
+	case PORTD:
+		Toggle_Pin(GPIOD_DATA_PORT, Channel_ID);
+		break;
+	case PORTE:
+		Toggle_Pin(GPIOE_DATA_PORT, Channel_ID);
+		break;
+	case PORTF:
+		Toggle_Pin(GPIOF_DATA_PORT, Channel_ID);
+		break;
 	}
+#endif
+}
 
 /******************************************************************************
 * \Syntax          : GPIO_LevelPortType DIO_ReadPort (GPIO_PortType Port_ID)
