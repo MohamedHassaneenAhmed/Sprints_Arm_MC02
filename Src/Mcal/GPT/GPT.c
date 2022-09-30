@@ -150,30 +150,30 @@ return 0;
 
 
 /******************************************************************************
-* \Syntax          : void GPT_StartTimer (GPT_ChannelAType Clannel, GPT_ValueType target_value)
+* \Syntax          : void GPT_StartTimer (GPT_ChannelAType channel, GPT_ValueType target_value)
 
 * \Description     : start timer and set the target value
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
-* \Parameters (in) : Clannel          >> module number
+* \Parameters (in) : channel          >> module number
 *                    target_value    >>  port target_value
 * \Parameters (out): None
 * \Return value:   : None
  *******************************************************************************/
 
-	void GPT_StartTimer(GPT_ChannelAType Clannel, GPT_ValueType target_value)
+	void GPT_StartTimer(GPT_ChannelAType Channel, GPT_ValueType target_value)
 {
 	/* clear interrupt */
-	Set_Pin((*((volatile uint32_t *)(Base_TIMER_ICR + Timer_Info_List[Clannel].offest))),
+	Set_Pin((*((volatile uint32_t *)(Base_TIMER_ICR + Timer_Info_List[Channel].offest))),
 			0);
 
 	/* load target value = number of counts*/
-	(*((volatile uint32_t*) (Base_TIMER_TAILR + Timer_Info_List[Clannel].offest))) =
-			target_value * 16 / GPT_LinkConfig[Clannel].Frequency_MHZ;
+	(*((volatile uint32_t*) (Base_TIMER_TAILR + Timer_Info_List[Channel].offest))) =
+			target_value * 16 / GPT_LinkConfig[Channel].Frequency_MHZ;
 
 	/* Enable module */
-	Set_Pin((*((volatile uint32_t *)(Base_TIMER_CTL + Timer_Info_List[Clannel].offest))),
+	Set_Pin((*((volatile uint32_t *)(Base_TIMER_CTL + Timer_Info_List[Channel].offest))),
 				0);
 
 	}
@@ -182,51 +182,51 @@ return 0;
 
 
 /******************************************************************************
-* \Syntax          : void GPT_StopTimer (GPT_ChannelAType Clannel)
+* \Syntax          : void GPT_StopTimer (GPT_ChannelAType Channel)
 
 * \Description     : stop timer
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
-* \Parameters (in) : Clannel    >> module number
+* \Parameters (in) : Channel    >> module number
 * \Parameters (out): None
 * \Return value:   : None
  *******************************************************************************/
 
-void GPT_StopTimer (GPT_ChannelAType Clannel)
+void GPT_StopTimer (GPT_ChannelAType Channel)
 {
 	/* disable module */
-	Clear_Pin((*((volatile uint32_t *)(Base_TIMER_CTL + Timer_Info_List[Clannel].offest))),
+	Clear_Pin((*((volatile uint32_t *)(Base_TIMER_CTL + Timer_Info_List[Channel].offest))),
 					0);
 }
 
 /******************************************************************************
-* \Syntax          : void GPT_EnableNotification(GPT_ChannelAType Clannel)
+* \Syntax          : void GPT_EnableNotification(GPT_ChannelAType Channel)
 
 
 * \Description     : enable interrupt of module and NVIC
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
-* \Parameters (in) : Clannel       >>  module number
+* \Parameters (in) : Channel       >>  module number
 * \Parameters (out): None
 * \Return value:   : None
  *******************************************************************************/
 
-void GPT_EnableNotification(GPT_ChannelAType Clannel)
+void GPT_EnableNotification(GPT_ChannelAType Channel)
 {
 	/* enable interrupt of module */
-	Set_Pin((*((volatile uint32_t *)(Base_TIMER_IMR + Timer_Info_List[Clannel].offest))),
+	Set_Pin((*((volatile uint32_t *)(Base_TIMER_IMR + Timer_Info_List[Channel].offest))),
 			0);
 
 	/* enable NVIC of module */
-	 NVIC_Enable_IRQ(Timer_Info_List[Clannel].vector_number);
+	 NVIC_Enable_IRQ(Timer_Info_List[Channel].vector_number);
 
 }
 
 
 /******************************************************************************
-* \Syntax          : void GPT_DisableNotification (GPT_ChannelAType Clannel)
+* \Syntax          : void GPT_DisableNotification (GPT_ChannelAType Channel)
 
 
 
@@ -234,19 +234,19 @@ void GPT_EnableNotification(GPT_ChannelAType Clannel)
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
-* \Parameters (in) : Clannel       >>  module number
+* \Parameters (in) : Channel       >>  module number
 * \Parameters (out): None
 * \Return value:   : None
  *******************************************************************************/
 
-void GPT_DisableNotification (GPT_ChannelAType Clannel)
+void GPT_DisableNotification (GPT_ChannelAType Channel)
 {
 	/* disable interrupt of module */
-  	Clear_Pin((*((volatile uint32_t *)(Base_TIMER_IMR + Timer_Info_List[Clannel].offest))),
+  	Clear_Pin((*((volatile uint32_t *)(Base_TIMER_IMR + Timer_Info_List[Channel].offest))),
 				0);
 
 	/* disable NVIC of module */
-		NVIC_Disable_IRQ(Timer_Info_List[Clannel].vector_number);
+		NVIC_Disable_IRQ(Timer_Info_List[Channel].vector_number);
 
 }
 
@@ -427,13 +427,13 @@ Std_ReturnType GPT_GetPredefTimerValue(GPT_PredefTimerType TimerType,
 				+ Timer_Info_List[WTIMERA0].offest)))
 				+ ((*((volatile uint32_t*) (Base_TIMER_TAPV
 						+ Timer_Info_List[WTIMERA0].offest)))
-						<< Timer_Info_List[WTIMERA0].prescale)) << 4;
+						<<0xFFFFFFFF)) << 4;
 	case F_2:
 		return_value = ((*((volatile uint32_t*) (Base_TIMER_TAV
 				+ Timer_Info_List[WTIMERA0].offest)))
 				+ ((*((volatile uint32_t*) (Base_TIMER_TAPV
 						+ Timer_Info_List[WTIMERA0].offest)))
-						<< Timer_Info_List[WTIMERA0].prescale)) << 3;
+						<<0xFFFFFFFF)) << 3;
 
 		break;
 	case F_4:
@@ -441,7 +441,7 @@ Std_ReturnType GPT_GetPredefTimerValue(GPT_PredefTimerType TimerType,
 				+ Timer_Info_List[WTIMERA0].offest)))
 				+ ((*((volatile uint32_t*) (Base_TIMER_TAPV
 						+ Timer_Info_List[WTIMERA0].offest)))
-						<< Timer_Info_List[WTIMERA0].prescale)) << 2;
+						<<0xFFFFFFFF)) << 2;
 
 		break;
 	case F_8:
@@ -449,7 +449,7 @@ Std_ReturnType GPT_GetPredefTimerValue(GPT_PredefTimerType TimerType,
 				+ Timer_Info_List[WTIMERA0].offest)))
 				+ ((*((volatile uint32_t*) (Base_TIMER_TAPV
 						+ Timer_Info_List[WTIMERA0].offest)))
-						<< Timer_Info_List[WTIMERA0].prescale)) << 1;
+						<<0xFFFFFFFF)) << 1;
 
 		break;
 	case F_16:
@@ -457,7 +457,7 @@ Std_ReturnType GPT_GetPredefTimerValue(GPT_PredefTimerType TimerType,
 				+ Timer_Info_List[WTIMERA0].offest)))
 				+ ((*((volatile uint32_t*) (Base_TIMER_TAPV
 						+ Timer_Info_List[WTIMERA0].offest)))
-						<< Timer_Info_List[WTIMERA0].prescale));
+						<<0xFFFFFFFF));
 
 		break;
 	case F_32:
@@ -465,14 +465,14 @@ Std_ReturnType GPT_GetPredefTimerValue(GPT_PredefTimerType TimerType,
 				+ Timer_Info_List[WTIMERA0].offest)))
 				+ ((*((volatile uint32_t*) (Base_TIMER_TAPV
 						+ Timer_Info_List[WTIMERA0].offest)))
-						<< Timer_Info_List[WTIMERA0].prescale))>> 1;
+						<<0xFFFFFFFF))>> 1;
 		break;
 	case F_48:
 		return_value = ((*((volatile uint32_t*) (Base_TIMER_TAV
 				+ Timer_Info_List[WTIMERA0].offest)))
 				+ ((*((volatile uint32_t*) (Base_TIMER_TAPV
 						+ Timer_Info_List[WTIMERA0].offest)))
-						<< Timer_Info_List[WTIMERA0].prescale)) >> 2;
+						<<0xFFFFFFFF)) >> 2;
 
 		break;
 	case F_64:
@@ -480,14 +480,14 @@ Std_ReturnType GPT_GetPredefTimerValue(GPT_PredefTimerType TimerType,
 				+ Timer_Info_List[WTIMERA0].offest)))
 				+ ((*((volatile uint32_t*) (Base_TIMER_TAPV
 						+ Timer_Info_List[WTIMERA0].offest)))
-						<< Timer_Info_List[WTIMERA0].prescale))>> 3;
+						<<0xFFFFFFFF))>> 3;
 		break;
 	case F_80:
 		return_value = ((*((volatile uint32_t*) (Base_TIMER_TAV
 				+ Timer_Info_List[WTIMERA0].offest)))
 				+ ((*((volatile uint32_t*) (Base_TIMER_TAPV
 						+ Timer_Info_List[WTIMERA0].offest)))
-						<< Timer_Info_List[WTIMERA0].prescale)) >> 4;
+						<<0xFFFFFFFF)) >> 4;
 		break;
 
 	}
@@ -778,8 +778,6 @@ void GPT_WTimerA5_Handler (void)
 	}
 
 }
-/******************************************************************************
- */
 
 /**********************************************************************************************************************
  *  END OF FILE: GPT.c

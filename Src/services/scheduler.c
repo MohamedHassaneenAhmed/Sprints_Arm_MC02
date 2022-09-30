@@ -20,7 +20,7 @@
 #include "GPT.h"
 #include"STD_Types.h"
 #include "LED.h"
-
+#include "Button.h"
 /**********************************************************************************************************************
  *  GLOBAL DATA
  *********************************************************************************************************************/
@@ -41,7 +41,10 @@ uint32_t sys_tick=0;
 task_cfg task_array []=
 {
  {LED_Blinkin_Task , 1000 },
-
+ {Toggle_OnUpdatingTime , 500},
+ {Toggle_OffUpdatingTime , 500},
+ {Button_1_Read    ,     400},
+ {Button_2_Read    ,    400},
 };
 
 /**********************************************************************************************************************
@@ -63,7 +66,7 @@ task_cfg task_array []=
 void System_Tick_Init (void)
 {
 	GPT_Init(GPT_LinkConfig);
-	GPT_StartTimer (1 , 15999);
+	GPT_StartTimer (TIMERA1 , 15999);
 }
 
 /******************************************************************************
@@ -75,7 +78,7 @@ void System_Tick_Init (void)
  *
  * \Sync\Async      : Synchronous
  * \Reentrancy      : Reentrant
- * \Parameters (in) :None
+ * \Parameters (in) : None
  * \Parameters (out): None
  * \Return value:   : None
  *******************************************************************************/

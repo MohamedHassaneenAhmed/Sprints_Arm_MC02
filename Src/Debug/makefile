@@ -12,6 +12,7 @@ GEN_CMDS__FLAG :=
 ORDERED_OBJS += \
 "./tm4c123gh6pm_startup_ccs.obj" \
 "./APP/app.obj" \
+"./HAL/Button.obj" \
 "./HAL/LED.obj" \
 "./MCAL/GPIO/dio/DIO.obj" \
 "./MCAL/GPIO/port/Port.obj" \
@@ -181,8 +182,8 @@ LED_Control_Sprints.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "tm4c123gh6pm_startup_ccs.obj" "APP\app.obj" "HAL\LED.obj" "MCAL\GPIO\dio\DIO.obj" "MCAL\GPIO\port\Port.obj" "MCAL\GPIO\port\Port_Lcfg.obj" "MCAL\GPT\GPT.obj" "MCAL\GPT\GPT_Lcfg.obj" "MCAL\NVIC\NVIC.obj" "MCAL\NVIC\NVIC_Lcfg.obj" "MCAL\clock\SysCtr.obj" "services\scheduler.obj" 
-	-$(RM) "tm4c123gh6pm_startup_ccs.d" "APP\app.d" "HAL\LED.d" "MCAL\GPIO\dio\DIO.d" "MCAL\GPIO\port\Port.d" "MCAL\GPIO\port\Port_Lcfg.d" "MCAL\GPT\GPT.d" "MCAL\GPT\GPT_Lcfg.d" "MCAL\NVIC\NVIC.d" "MCAL\NVIC\NVIC_Lcfg.d" "MCAL\clock\SysCtr.d" "services\scheduler.d" 
+	-$(RM) "tm4c123gh6pm_startup_ccs.obj" "APP\app.obj" "HAL\Button.obj" "HAL\LED.obj" "MCAL\GPIO\dio\DIO.obj" "MCAL\GPIO\port\Port.obj" "MCAL\GPIO\port\Port_Lcfg.obj" "MCAL\GPT\GPT.obj" "MCAL\GPT\GPT_Lcfg.obj" "MCAL\NVIC\NVIC.obj" "MCAL\NVIC\NVIC_Lcfg.obj" "MCAL\clock\SysCtr.obj" "services\scheduler.obj" 
+	-$(RM) "tm4c123gh6pm_startup_ccs.d" "APP\app.d" "HAL\Button.d" "HAL\LED.d" "MCAL\GPIO\dio\DIO.d" "MCAL\GPIO\port\Port.d" "MCAL\GPIO\port\Port_Lcfg.d" "MCAL\GPT\GPT.d" "MCAL\GPT\GPT_Lcfg.d" "MCAL\NVIC\NVIC.d" "MCAL\NVIC\NVIC_Lcfg.d" "MCAL\clock\SysCtr.d" "services\scheduler.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

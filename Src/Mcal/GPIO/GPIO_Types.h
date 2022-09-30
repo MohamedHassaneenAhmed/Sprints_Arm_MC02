@@ -79,6 +79,7 @@ typedef enum
 {
 	PIN_LOW = 0,
 	PIN_HIGH,
+	NON_CONFIGURED
 } GPIO_PinLevelType;
 /*******************************/
 typedef enum

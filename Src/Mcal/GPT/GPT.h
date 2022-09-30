@@ -51,47 +51,47 @@
 Std_ReturnType GPT_Init (const GPT_ConfigType *ConfigPtr);
 
 /******************************************************************************
-* \Syntax          : void GPT_StartTimer (GPT_ChannelAType Clannel, GPT_ValueType target_value)
+* \Syntax          : void GPT_StartTimer (GPT_ChannelAType Channel, GPT_ValueType target_value)
 
 * \Description     : start timer and set the target value
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
-* \Parameters (in) : Clannel          >> module number
+* \Parameters (in) : Channel          >> module number
 *                    target_value    >>  port target_value
 * \Parameters (out): None
 * \Return value:   : None
  *******************************************************************************/
-void GPT_StartTimer (GPT_ChannelAType Clannel, GPT_ValueType target_value);
+void GPT_StartTimer (GPT_ChannelAType Channel, GPT_ValueType target_value);
 /******************************************************************************
-* \Syntax          : void GPT_StopTimer (GPT_ChannelAType Clannel)
+* \Syntax          : void GPT_StopTimer (GPT_ChannelAType Channel)
 
 * \Description     : stop timer
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
-* \Parameters (in) : Clannel    >> module number
+* \Parameters (in) : Channel    >> module number
 * \Parameters (out): None
 * \Return value:   : None
  *******************************************************************************/
-void GPT_StopTimer (GPT_ChannelAType Clannel);
+void GPT_StopTimer (GPT_ChannelAType Channel);
 
 /******************************************************************************
-* \Syntax          : void GPT_EnableNotification(GPT_ChannelAType Clannel)
+* \Syntax          : void GPT_EnableNotification(GPT_ChannelAType Channel)
 
 
 * \Description     : enable interrupt of module and NVIC
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
-* \Parameters (in) : Clannel       >>  module number
+* \Parameters (in) : Channel       >>  module number
 * \Parameters (out): None
 * \Return value:   : None
  *******************************************************************************/
-void GPT_EnableNotification (GPT_ChannelAType Clannel);
+void GPT_EnableNotification (GPT_ChannelAType Channel);
 
 /******************************************************************************
-* \Syntax          : void GPT_DisableNotification (GPT_ChannelAType Clannel)
+* \Syntax          : void GPT_DisableNotification (GPT_ChannelAType Channel)
 
 
 
@@ -99,11 +99,11 @@ void GPT_EnableNotification (GPT_ChannelAType Clannel);
 *
 * \Sync\Async      : Synchronous
 * \Reentrancy      : Reentrant
-* \Parameters (in) : Clannel       >>  module number
+* \Parameters (in) : Channel       >>  module number
 * \Parameters (out): None
 * \Return value:   : None
  *******************************************************************************/
-void GPT_DisableNotification (GPT_ChannelAType Clannel);
+void GPT_DisableNotification (GPT_ChannelAType Channel);
 
 
 

@@ -50,6 +50,7 @@ Std_ReturnType Enable_Peripheral_Clock (uint8_t U8Peripheral_Name , uint8_t U8Pe
 		 {
 			 Set_Pin(SYSCTL_RCGCWD,U8Peripheral_Channel);
 		 }
+		 break;
 	 case TIMER :
 	 		 if  (U8Peripheral_Channel > 5)
 	 		 {
@@ -59,6 +60,8 @@ Std_ReturnType Enable_Peripheral_Clock (uint8_t U8Peripheral_Name , uint8_t U8Pe
 	 		 {
 	 			 Set_Pin(SYSCTL_RCGCTIMER,U8Peripheral_Channel);
 	 		 }
+			 break;
+
 	 case GPIO :
 	 		 if (U8Peripheral_Channel > 5)
 	 		 {
@@ -68,6 +71,8 @@ Std_ReturnType Enable_Peripheral_Clock (uint8_t U8Peripheral_Name , uint8_t U8Pe
 	 		 {
 	 			 Set_Pin(SYSCTL_RCGCGPIO,U8Peripheral_Channel);
 	 		 }
+			 break;
+
 	 case DMA :
 	 		 if (U8Peripheral_Channel > 0)
 	 		 {
@@ -77,6 +82,8 @@ Std_ReturnType Enable_Peripheral_Clock (uint8_t U8Peripheral_Name , uint8_t U8Pe
 	 		 {
 	 			 Set_Pin(SYSCTL_RCGCDMA,U8Peripheral_Channel);
 	 		 }
+			 break;
+
 	 case HIB :
 	 		 if (U8Peripheral_Channel > 0)
 	 		 {
@@ -86,6 +93,8 @@ Std_ReturnType Enable_Peripheral_Clock (uint8_t U8Peripheral_Name , uint8_t U8Pe
 	 		 {
 	 			 Set_Pin(SYSCTL_RCGCHIB,U8Peripheral_Channel);
 	 		 }
+			 break;
+
 	 case UART :
 	 		 if (U8Peripheral_Channel > 7)
 	 		 {
@@ -95,6 +104,8 @@ Std_ReturnType Enable_Peripheral_Clock (uint8_t U8Peripheral_Name , uint8_t U8Pe
 	 		 {
 	 			 Set_Pin(SYSCTL_RCGCUART,U8Peripheral_Channel);
 	 		 }
+			 break;
+
 	 case SSI :
 	 		 if (U8Peripheral_Channel > 3)
 	 		 {
@@ -104,6 +115,8 @@ Std_ReturnType Enable_Peripheral_Clock (uint8_t U8Peripheral_Name , uint8_t U8Pe
 	 		 {
 	 			 Set_Pin(SYSCTL_RCGCSSI,U8Peripheral_Channel);
 	 		 }
+			 break;
+
 	 case I2C :
 	 		 if (U8Peripheral_Channel > 3)
 	 		 {
@@ -113,6 +126,8 @@ Std_ReturnType Enable_Peripheral_Clock (uint8_t U8Peripheral_Name , uint8_t U8Pe
 	 		 {
 	 			 Set_Pin(SYSCTL_RCGCI2C,U8Peripheral_Channel);
 	 		 }
+			 break;
+
 	 case USB :
 	 		 if (U8Peripheral_Channel > 0)
 	 		 {
@@ -122,6 +137,8 @@ Std_ReturnType Enable_Peripheral_Clock (uint8_t U8Peripheral_Name , uint8_t U8Pe
 	 		 {
 	 			 Set_Pin(SYSCTL_RCGCUSB,U8Peripheral_Channel);
 	 		 }
+			 break;
+
 	 case CAN :
 	 		 if (U8Peripheral_Channel > 1)
 	 		 {
@@ -131,6 +148,8 @@ Std_ReturnType Enable_Peripheral_Clock (uint8_t U8Peripheral_Name , uint8_t U8Pe
 	 		 {
 	 			 Set_Pin(SYSCTL_RCGCCAN,U8Peripheral_Channel);
 	 		 }
+			 break;
+
 	 case ADC :
 	 		 if (U8Peripheral_Channel > 1)
 	 		 {
@@ -140,6 +159,8 @@ Std_ReturnType Enable_Peripheral_Clock (uint8_t U8Peripheral_Name , uint8_t U8Pe
 	 		 {
 	 			 Set_Pin(SYSCTL_RCGCADC,U8Peripheral_Channel);
 	 		 }
+			 break;
+
 	 case ACMP :
 	 		 if (U8Peripheral_Channel > 0)
 	 		 {
@@ -149,6 +170,8 @@ Std_ReturnType Enable_Peripheral_Clock (uint8_t U8Peripheral_Name , uint8_t U8Pe
 	 		 {
 	 			 Set_Pin(SYSCTL_RCGCACMP,U8Peripheral_Channel);
 	 		 }
+			 break;
+
 	 case PWM :
 	 		 if (U8Peripheral_Channel > 1)
 	 		 {
@@ -158,6 +181,8 @@ Std_ReturnType Enable_Peripheral_Clock (uint8_t U8Peripheral_Name , uint8_t U8Pe
 	 		 {
 	 			 Set_Pin(SYSCTL_RCGCPWM,U8Peripheral_Channel);
 	 		 }
+			 break;
+
 	 case QEI :
 	 		 if (U8Peripheral_Channel > 1)
 	 		 {
@@ -167,6 +192,8 @@ Std_ReturnType Enable_Peripheral_Clock (uint8_t U8Peripheral_Name , uint8_t U8Pe
 	 		 {
 	 			 Set_Pin(SYSCTL_RCGCQEI,U8Peripheral_Channel);
 	 		 }
+			 break;
+
 	 case EEPROM :
 	 		 if (U8Peripheral_Channel > 0)
 	 		 {
@@ -176,6 +203,8 @@ Std_ReturnType Enable_Peripheral_Clock (uint8_t U8Peripheral_Name , uint8_t U8Pe
 	 		 {
 	 			 Set_Pin(SYSCTL_RCGCEEPROM,U8Peripheral_Channel);
 			}
+			 break;
+
 		case WTIMER:
 			if (U8Peripheral_Channel > 5)
 			{
@@ -185,6 +214,8 @@ Std_ReturnType Enable_Peripheral_Clock (uint8_t U8Peripheral_Name , uint8_t U8Pe
 			{
 				Set_Pin(SYSCTL_RCGCWTIMER, U8Peripheral_Channel);
 			}
+			 break;
+
 		}
 	}
 	return OK;

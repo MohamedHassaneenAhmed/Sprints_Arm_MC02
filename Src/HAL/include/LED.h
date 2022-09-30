@@ -15,6 +15,8 @@
 
 #ifndef HAL_LED_H_
 #define HAL_LED_H_
+
+
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION PROTOTYPES
  *********************************************************************************************************************/
@@ -43,7 +45,9 @@ void LED_Init (void);
   * \Parameters (out): None
   * \Return value:   : None
   *******************************************************************************/
-extern void LED_Blinkin_Task (void);
+extern void Toggle_OffUpdatingTime(void);
+extern void Toggle_OnUpdatingTime(void);
+extern void LED_Blinkin_Task(void);
 
 /***********************************************************************************************************************/
 #endif /* HAL_LED_H_ */

@@ -16,12 +16,13 @@
 
 #include <scheduler.h>
 #include "LED.h"
-
+#include "Button.h"
 
 int main(void)
 {
 
 	LED_Init();
+	Button_Init();
 	System_Tick_Init();
 
 	while (1)

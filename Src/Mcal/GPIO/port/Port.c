@@ -2237,10 +2237,12 @@ return 0;
 				PIN_SetDirection(Port_ConfigPtr[i].PortType,
 								 Port_ConfigPtr[i].ChannelType,
 									INPUT);
+				break;
 			case OUTPUT:
 				PIN_SetDirection(Port_ConfigPtr[i].PortType,
 								 Port_ConfigPtr[i].ChannelType,
 								 OUTPUT);
+				break;
 			default: /*do nothing*/
 				break;
 			}
@@ -2280,10 +2282,14 @@ return 0;
 				DIO_WriteChannel(Port_ConfigPtr[i].PortType,
 								 Port_ConfigPtr[i].ChannelType,
 								 PIN_LOW);
+				break;
 			case PIN_HIGH:
 				DIO_WriteChannel(Port_ConfigPtr[i].PortType,
 								 Port_ConfigPtr[i].ChannelType,
 								 PIN_HIGH);
+				break;
+			case NON_CONFIGURED:
+				break;
 			default: /*do nothing*/
 				break;
 			}
